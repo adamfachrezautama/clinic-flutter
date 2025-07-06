@@ -1,0 +1,190 @@
+Penjelasan
+
+- StatelessWidget
+*Widget yang tidak berubah setelah dibuat.
+*Digunakan untuk UI yang statis, tidak bergantung pada input pengguna atau data yang bisa berubah.
+*Tidak bisa memanggil setState().
+
+Kapan digunakan?
+*Menampilkan teks tetap.
+*Tampilan berdasarkan data yang tidak berubah.
+*Tombol yang isinya tetap.
+
+- StatefulWidget
+*Widget yang dapat berubah karena menyimpan state internal.
+*Menggunakan State untuk mengatur dan merender ulang tampilan.
+*Bisa menggunakan setState() untuk memberi tahu Flutter bahwa UI harus di-rebuild.
+
+Kapan digunakan?
+*Untuk animasi, form input, counter, atau tampilan yang berubah karena interaksi pengguna.
+*Contoh nyata: tombol like, toggle switch, atau progress bar.
+
+- return
+return di dalam metode build(BuildContext context) pada Flutter digunakan untuk mengembalikan struktur tampilan (UI) dari widget.
+Komponen yang kamu "return" akan muncul di layar aplikasi.
+Berikut adalah beragam variasi return widget yang umum digunakan dalam build(),
+lengkap dengan penjelasan fungsi dan kapan digunakan:
+
+1. return const Placeholder();
+Fungsi:
+*Menampilkan kotak abu-abu dengan garis silang.
+*Cocok untuk menandai area UI yang belum selesai dibuat.
+
+Kapan digunakan:
+*Saat sedang mengembangkan UI secara bertahap.
+*Untuk "dummy" tampilan sementara.
+
+2. return Text('Halo Dunia');
+Fungsi:
+Menampilkan teks di layar.
+
+Kapan digunakan:
+Untuk menampilkan label, deskripsi, pesan, dsb.
+
+3. return ElevatedButton(...)
+Fungsi:
+Menampilkan tombol yang bisa ditekan.
+
+Kapan digunakan:
+Untuk interaksi pengguna (submit, login, tambah, dll).
+
+4. return Column(...) atau Row(...)
+Fungsi:
+*Column: Menyusun widget secara vertikal.
+*Row: Menyusun widget secara horizontal.
+
+Kapan digunakan:
+Jika kamu ingin meletakkan banyak widget berjejer atas-bawah (Column) atau kiri-kanan (Row).
+
+5. return Container(...)
+Fungsi:
+Widget serbaguna, bisa untuk padding, margin, background, border, ukuran, dll.
+
+Kapan digunakan:
+Saat kamu butuh kontrol tampilan yang fleksibel, seperti membuat kotak berwarna, memberi jarak, dll.
+
+6. return Center(child: ...)
+ungsi:
+Memusatkan widget di tengah layar atau parent-nya.
+
+Kapan digunakan:
+Jika kamu ingin widget (teks, tombol, gambar) muncul di tengah.
+
+7. return Scaffold(...)
+Fungsi:
+*Struktur dasar layout untuk satu halaman penuh (screen) di Flutter.
+*Berisi AppBar, Body, Drawer, BottomNavigationBar, dll.
+
+Kapan digunakan:
+Saat kamu membuat halaman baru dalam aplikasi (misal: HomePage, DetailPage, dsb).
+
+8. return ListView(...)
+ Fungsi:
+Menampilkan daftar scrollable (bisa digeser).
+
+Kapan digunakan:
+Untuk menampilkan list item dinamis, seperti daftar produk, pesan, user, dll.
+
+9. return Stack(...)
+Fungsi:
+Menumpuk widget di atas satu sama lain.
+
+Kapan digunakan:
+Untuk UI kompleks seperti gambar dengan teks di atasnya, tombol mengambang, dsb.
+
+10. return Visibility(...)
+Menyembunyikan atau menampilkan widget secara dinamis.
+
+lib/core/components
+# buttons.dart
+    - Color?
+    untuk memberi warna ke komponen UI.
+
+    - bool
+    Umumnya digunakan untuk kontrol logika, kondisi, dan visibilitas.
+
+    - int
+    Bilangan bulat, digunakan untuk nilai numerik tanpa pecahan.
+
+    - double
+    Bilangan pecahan (desimal), digunakan untuk ukuran, radius, lebar, tinggi, dsb.
+
+    - String
+      Teks yang ditampilkan di tombol.
+
+    - ButtonStyle
+    untuk mengatur tampilan dan perilaku dari TextButton, ElevatedButton, atau OutlinedButton.
+    Ini class kompleks, bisa mengatur:
+    *warna latar: backgroundColor
+    *warna teks: foregroundColor
+    *padding: padding
+    *radius: shape
+    *bayangan: elevation
+
+
+
+# custom_text_field.dart
+
+    - Function(String value)?
+    Ini adalah fungsi callback opsional.
+    Mengembalikan apa pun yang kamu buat di implementasinya — tidak ada aturan tetap.
+    Biasanya dipakai untuk memproses atau menangkap input teks saat berubah.
+
+    - TextInputAction?
+    Digunakan untuk menentukan aksi tombol enter pada keyboard.
+    Bukan fungsi, ini adalah enum yang mengembalikan nilai konstan seperti:
+    *TextInputAction.done
+    *TextInputAction.next
+    *TextInputAction.search
+    *TextInputAction.send
+    Ini tidak men-trigger fungsi, hanya memberitahu keyboard tindakan apa yang harus tampil (misalnya tombol "Next", "Done", dsb).
+
+    - Widget?
+    Widget adalah class dasar untuk semua UI di Flutter.
+    Mengembalikan UI yang bisa ditampilkan seperti:
+    *Text('Halo')
+    *Icon(Icons.email)
+    *Container()
+    *SizedBox()
+
+    - TextInputType?
+    Sama seperti TextInputAction, ini juga enum.
+    Digunakan untuk menentukan jenis input keyboard yang muncul, contoh:
+    *TextInputType.text → keyboard biasa
+    *TextInputType.emailAddress → keyboard dengan @
+    *TextInputType.number → keyboard angka
+    *TextInputType.phone → keyboard khusus nomor telepon
+
+    - TextEditingController
+    Mengelola dan mengontrol isi dari sebuah TextField
+    fungsinya:
+    1.Mendapatkan teks yang diketik user
+    ==
+    final controller = TextEditingController();
+    ...
+    TextField(controller: controller)
+    ...
+    print(controller.text); // ambil teks yang diketik
+    ==
+
+    2. Mengatur atau mengubah isi teks
+    ==
+    controller.text = 'Halo Dunia!';
+    ==
+    Bisa digunakan untuk:
+    *Autofill
+    *Menampilkan data dari server
+    *Reset form
+
+    3. Mendengarkan perubahan teks
+    ==
+    controller.addListener(() {
+      print('Teks berubah: ${controller.text}');
+    });
+    ==
+
+    !note.
+    Jangan Lupa:
+    Panggil dispose() di StatefulWidget saat tidak digunakan lagi.
+    Bisa digunakan di banyak TextField, misalnya untuk login: email & password masing-masing punya controller.
+
