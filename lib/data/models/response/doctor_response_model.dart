@@ -1,3 +1,5 @@
+import 'package:flutter_clinicapp/data/models/response/specialitation_response_model.dart';
+
 class DoctorResponseModel {
   final bool? success;
   final String? status;
