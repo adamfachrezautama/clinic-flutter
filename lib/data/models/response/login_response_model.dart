@@ -1,14 +1,27 @@
 import 'dart:convert';
 
-import 'package:flutter_clinicapp/data/models/response/user_model.dart';
+// return response()->json([
+//                     'status' => 'success',
+//                     'data' => [
+//                         'user' => $user,
+//                         'is_new' => true,
+//                         'token' => $token
+//                     ]
+//                 ], 201);
 
 class LoginResponseModel {
   final String? status;
   final LoginModel? data;
-  LoginResponseModel({this.status, this.data});
+  LoginResponseModel({
+    this.status,
+    this.data,
+  });
 
   Map<String, dynamic> toMap() {
-    return {'status': status, 'data': data?.toMap()};
+    return {
+      'status': status,
+      'data': data?.toMap(),
+    };
   }
 
   factory LoginResponseModel.fromMap(Map<String, dynamic> map) {
@@ -24,18 +37,43 @@ class LoginResponseModel {
       LoginResponseModel.fromMap(json.decode(source));
 }
 
+// return response()->json([
+//                     'status' => 'success',
+//                     'data' => [
+//                         'user' => $user,
+//                         'is_new' => true,
+//                         'token' => $token
+//                     ]
+//                 ], 201);
 class LoginModel {
   final String? token;
   final UserModel? user;
   final bool? isNew;
 
-  LoginModel({this.token, this.user, this.isNew});
+  LoginModel({
+    this.token,
+    this.user,
+    this.isNew,
+  });
+
+  factory LoginModel.fromMap(Map<String, dynamic> json) => LoginModel(
+    token: json["token"],
+    isNew: json["is_new"],
+    user: json["user"] == null ? null : UserModel.fromMap(json["user"]),
+  );
+
+  Map<String, dynamic> toMap() => {
+    "token": token,
+    "user": user?.toMap(),
+    "is_new": isNew,
+  };
 }
 
 class UserModel {
   final int? id;
   final String? name;
   final String? email;
+
   final String? role;
   final String? googleId;
   final String? ktpNumber;
@@ -44,7 +82,7 @@ class UserModel {
   final String? phoneNumber;
   final String? address;
   final String? certification;
-  final String? specialitation;
+  final String? specialization;
   final int? telemedicineFee;
   final int? chatFee;
   final String? startTime;
@@ -65,7 +103,7 @@ class UserModel {
     this.phoneNumber,
     this.address,
     this.certification,
-    this.specialitation,
+    this.specialization,
     this.telemedicineFee,
     this.chatFee,
     this.startTime,
@@ -82,40 +120,44 @@ class UserModel {
     role: json["role"],
     googleId: json["google_id"],
     ktpNumber: json["ktp_number"],
-    birthDate: json["birth_datte"] == null ? null : DateTime.parse(json["birth_date"]),
+    birthDate: json["birth_date"] == null
+        ? null
+        : DateTime.parse(json["birth_date"]),
     gender: json["gender"],
     phoneNumber: json["phone_number"],
     address: json["address"],
     certification: json["certification"],
-    specialitation: json["specialitation"],
+    specialization: json["specialization"],
     telemedicineFee: json["telemedicine_fee"],
     chatFee: json["chat_fee"],
     startTime: json["start_time"],
     endTime: json["end_time"],
     clinicId: json["clinic_id"],
-    image:json["image"],
+    image: json["image"],
     status: json["status"],
   );
-  
+
   Map<String, dynamic> toMap() => {
-    "id":id,
-    "name":name,
-    "email":email,
-    "role":role,
-    "google_id":googleId,
+    "id": id,
+    "name": name,
+    "email": email,
+    "role": role,
+    "google_id": googleId,
     "ktp_number": ktpNumber,
-    "birth_date":birthDate == null ? null : "${birthDate!.year.toString().padLeft(4, '0')}-${birthDate!.month.toString().padLeft(2, '0')}-${birthDate!.day.toString().padLeft(2,'0')}",
-    "geder": gender,
+    "birth_date": birthDate == null
+        ? null
+        : "${birthDate!.year.toString().padLeft(4, '0')}-${birthDate!.month.toString().padLeft(2, '0')}-${birthDate!.day.toString().padLeft(2, '0')}",
+    "gender": gender,
     "phone_number": phoneNumber,
     "address": address,
     "certification": certification,
-    "specialitation": specialitation,
+    "specialization": specialization,
     "telemedicine_fee": telemedicineFee,
-    "chat_fee":chatFee,
-    "start_time":startTime,
-    "end_time":endTime,
+    "chat_fee": chatFee,
+    "start_time": startTime,
+    "end_time": endTime,
     "clinic_id": clinicId,
-    "image":image,
-    "status":status,
+    "image": image,
+    "status": status,
   };
 }
