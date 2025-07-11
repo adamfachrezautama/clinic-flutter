@@ -46,7 +46,7 @@ class DoctorModel {
   final String? image;
   final String? status;
   final ClinicModel? clinic;
-  final SpecialitationModel? specialitaion;
+  final SpecialitationModel? specialitation;
 
   DoctorModel({
     this.address,
@@ -59,7 +59,7 @@ class DoctorModel {
     this.image,
     this.status,
     this.clinic,
-    this.specialitaion,
+    this.specialitation,
     this.id,
     this.name,
     this.email,
@@ -91,7 +91,7 @@ class DoctorModel {
     image: json["image"],
     status: json["status"],
     clinic: json["clinic"] == null ? null : ClinicModel.fromMap(json["clinic"],),
-    specialitaion:
+    specialitation:
         json["specialitation"] == null
             ? null
             : SpecialitationModel.fromMap(json["specialitation"]),
@@ -117,7 +117,7 @@ class DoctorModel {
     "image": image,
     "status": status,
     "clinic": clinic?.toMap(),
-    "specialitation": specialitaion?.toMap(),
+    "specialitation": specialitation?.toMap(),
   };
 }
 

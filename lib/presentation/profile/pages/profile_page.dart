@@ -1,14 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clinicapp/core/assets/assets.gen.dart';
 import 'package:flutter_clinicapp/core/components/spaces.dart';
+import 'package:flutter_clinicapp/core/constants/colors.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
+import 'package:flutter_clinicapp/data/datasources/auth_local_datasource.dart';
+import 'package:flutter_clinicapp/data/models/response/login_response_model.dart';
+import 'package:flutter_clinicapp/presentation/auth/pages/onboarding_page.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-import '../../../core/assets/assets.gen.dart';
-import '../../../core/constants/colors.dart';
-import '../../../data/datasources/auth_local_datasource.dart';
-import '../../../data/models/response/login_response_model.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -27,7 +26,10 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [AppColors.secondary, Color(0xff14469F0)],
+              colors: [
+                AppColors.secondary,
+                Color(0xff1469F0),
+              ],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
             ),
@@ -45,75 +47,78 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         const SpaceHeight(14),
         Padding(
-          padding: const EdgeInsets.all(20),child: FutureBuilder<LoginResponseModel?>(
-            future: AuthLocalDatasource().getUserData(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.hasError) {
-                return const Center(
-                  child: Text('Error'),
-                );
-              } else if (snapshot.hasData) {
-                return Row(
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: const BoxDecoration(
-                        color: Color(
-                          0xffF5F5F5,
-                        ),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: Image.network(
-                            snapshot.data!.data?.user?.image ?? '',
-                            width: 50.0,
-                            height: 50.0,
-                            fit: BoxFit.cover,
+          padding: const EdgeInsets.all(
+            20,
+          ),
+          child: FutureBuilder<LoginResponseModel?>(
+              future: AuthLocalDatasource().getUserData(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasError) {
+                  return const Center(
+                    child: Text('Error'),
+                  );
+                } else if (snapshot.hasData) {
+                  return Row(
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 50,
+                        decoration: const BoxDecoration(
+                          color: Color(
+                            0xffF5F5F5,
                           ),
+                          shape: BoxShape.circle,
                         ),
-                      ),
-                    ),
-                    const SpaceWidth(
-                      16,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          snapshot.data!.data?.user?.name ?? '',
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          snapshot.data!.data?.user?.email ?? '',
-                          style: const TextStyle(
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w400,
-                            color: Color(
-                              0xff8C8C8C,
+                        child: Center(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
+                            child: Image.network(
+                              snapshot.data!.data?.user?.image ?? '',
+                              width: 50.0,
+                              height: 50.0,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ],
-                );
-              } else {
-                return const Center(
-                  child: Text('Data tidak ditemukan'),
-                );
-              }
-            }),
+                      ),
+                      const SpaceWidth(
+                        16,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            snapshot.data!.data?.user?.name ?? '',
+                            style: const TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            snapshot.data!.data?.user?.email ?? '',
+                            style: const TextStyle(
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.w400,
+                              color: Color(
+                                0xff8C8C8C,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                } else {
+                  return const Center(
+                    child: Text('Data tidak ditemukan'),
+                  );
+                }
+              }),
         ),
         const SpaceHeight(
           12,

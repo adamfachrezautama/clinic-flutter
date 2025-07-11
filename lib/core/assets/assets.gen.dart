@@ -46,6 +46,9 @@ class $AssetsIconsGen {
   AssetGenImage get hospitalPrimary =>
       const AssetGenImage('assets/icons/hospital-primary.png');
 
+  /// File path: assets/icons/image.svg
+  SvgGenImage get image => const SvgGenImage('assets/icons/image.svg');
+
   /// File path: assets/icons/like-shapes.png
   AssetGenImage get likeShapes =>
       const AssetGenImage('assets/icons/like-shapes.png');
@@ -78,12 +81,13 @@ class $AssetsIconsGen {
     help,
     home,
     hospitalPrimary,
+    image,
     likeShapes,
     logout,
     note,
     personHistory,
     profileCircle,
-    telemedis,
+    telemedis
   ];
 }
 
@@ -92,6 +96,9 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/JF4.png
   AssetGenImage get jf4 => const AssetGenImage('assets/images/JF4.png');
+
+  /// File path: assets/images/beach.png
+  AssetGenImage get beach => const AssetGenImage('assets/images/beach.png');
 
   /// File path: assets/images/cwb.png
   AssetGenImage get cwb => const AssetGenImage('assets/images/cwb.png');
@@ -172,6 +179,7 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     jf4,
+    beach,
     cwb,
     doctor1,
     doctor2,
@@ -191,23 +199,23 @@ class $AssetsImagesGen {
     logo,
     onboardingDoctor,
     paymentSuccess,
-    webviewXendit,
+    webviewXendit
   ];
 }
 
 class Assets {
-  const Assets._();
+  Assets._();
 
-  static const String aEnv = '.env';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
-
-  /// List of all assets
-  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
+  const AssetGenImage(
+      this._assetName, {
+        this.size,
+        this.flavors = const {},
+      });
 
   final String _assetName;
 
@@ -235,7 +243,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.medium,
+    FilterQuality filterQuality = FilterQuality.low,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -267,8 +275,15 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   String get path => _assetName;
@@ -277,11 +292,17 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
-    : _isVecFormat = false;
+  const SvgGenImage(
+      this._assetName, {
+        this.size,
+        this.flavors = const {},
+      }) : _isVecFormat = false;
 
-  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
-    : _isVecFormat = true;
+  const SvgGenImage.vec(
+      this._assetName, {
+        this.size,
+        this.flavors = const {},
+      }) : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
@@ -335,8 +356,7 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      colorFilter:
-          colorFilter ??
+      colorFilter: colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
