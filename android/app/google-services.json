@@ -14,39 +14,10 @@
       },
       "oauth_client": [
         {
-          "client_id": "1099361578530-teuhj3mmo3l0gbss7ob883349dqbll09.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDJfoPtCr4Lpho2UjOGsVwvw33O0OCxlaA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1099361578530-teuhj3mmo3l0gbss7ob883349dqbll09.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1099361578530:android:be4fabc063f5821039247b",
-        "android_client_info": {
-          "package_name": "com.example.flutter_clinicmobile_app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1099361578530-lnbr7fll4p7r1be3ju1lnd282gbp31hq.apps.googleusercontent.com",
+          "client_id": "1099361578530-vpgb5acid3b50nniltev01vqkb2t1j2k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.flutter_clinicmobile_app",
+            "package_name": "com.example.flutter_clinicapp",
             "certificate_hash": "bc954d6fd0e51bd8f83b49c0947145c7e4b5dd1c"
           }
         },

@@ -43,7 +43,7 @@ class _RoomChatPageState extends State<RoomChatPage> {
     final channel = Channel(
       id: generateChannelId(
           currentUser!.uid, widget.partner.id, widget.order.schedule!),
-      memberIds: [currentUser!.uid, widget.partner.id],
+      memberId: [currentUser!.uid, widget.partner.id],
       members: [UserModel.fromFirebaseUser(currentUser!), widget.partner],
       lastMessage: _messageController.text.trim(),
       sendBy: currentUser!.uid,

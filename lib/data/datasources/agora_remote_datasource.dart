@@ -15,7 +15,7 @@ class AgoraRemoteDatasource{
   Future<Either<String, AgoraResponseModel>> getAgoraCalls() async{
     final userData = await AuthLocalDatasource().getUserData();
     final response = await http.get(
-  Uri.parse('${dotenv.env['BASE_URL']}/api/agora-calls'),
+  Uri.parse('${dotenv.env['BASE_URL']}/agora-calls'),
   headers: {
     'Authorization' : 'Bearer ${userData?.data?.token}',
   'Accept' : 'application/json',
@@ -32,7 +32,7 @@ class AgoraRemoteDatasource{
   Future<Either<String, String>> addAgoraCall(AgoraRequestModel model) async{
     final userData = await AuthLocalDatasource().getUserData();
     final response = await http.post(
-      Uri.parse('${dotenv.env['BASE_URL']}/api/agora-call'),
+      Uri.parse('${dotenv.env['BASE_URL']}/agora-call'),
       headers:{
         'Authorization': 'Bearer ${userData?.data?.token}',
         'Accept': 'application/json',
@@ -51,7 +51,7 @@ class AgoraRemoteDatasource{
 
   Future<Either<String, TokenModel>> getToken(String channelName) async {
     final response = await http.get(
-      Uri.parse('${dotenv.env['BASE_URL']}/api/agora/token/$channelName'),
+      Uri.parse('${dotenv.env['BASE_URL']}/agora/token/$channelName'),
     );
     if(response.statusCode == 200){
       final jsonData = jsonDecode(response.body);

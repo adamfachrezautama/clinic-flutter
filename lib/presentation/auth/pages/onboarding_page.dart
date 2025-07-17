@@ -35,29 +35,52 @@ class _OnboardingPageState extends State<OnboardingPage> {
     try {
       await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
+
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Login dibatalkan")),
+        );
+        return;
+      }
+
       final GoogleSignInAuthentication googleAuth =
-          await googleUser!.authentication;
+      await googleUser.authentication;
+
+      final idToken = googleAuth.idToken;
+
+      if (idToken == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("ID Token kosong, tidak bisa login.")),
+        );
+        return;
+      }
+
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
+        idToken: idToken,
       );
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      final UserCredential userCredential =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
       uid = userCredential.user?.uid ?? '';
-      context.read<LoginGoogleBloc>().add(LoginGoogleEvent.loginGoogle(
-            googleAuth.idToken ?? '',
-          ));
+
+      // Baru kirim ke server
+      context.read<LoginGoogleBloc>().add(
+        LoginGoogleEvent.loginGoogle(idToken),
+      );
+
       log("UID : $uid");
-      // setState(() {});
     } catch (e) {
       final snackBar = SnackBar(
-        content: Text('$e'),
+        content: Text("Google Login Error: $e"),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       log("Google Login Error : $e");
     }
   }
+
 
   void _handleOptIn() {
     OneSignal.User.pushSubscription.optIn();

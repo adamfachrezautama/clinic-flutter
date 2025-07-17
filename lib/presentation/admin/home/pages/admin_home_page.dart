@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clinicapp/core/assets/assets.gen.dart';
 import 'package:flutter_clinicapp/core/components/spaces.dart';
 import 'package:flutter_clinicapp/core/constants/colors.dart';
-import 'package:flutter_clinicapp/core/constants/variabels.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:flutter_clinicapp/core/extensions/string_ext.dart';
 import 'package:flutter_clinicapp/presentation/admin/home/blocs/get_clinic/get_clinic_bloc.dart';
 import 'package:flutter_clinicapp/presentation/admin/home/blocs/get_orders_clinic/get_orders_clinic_bloc.dart';
 import 'package:flutter_clinicapp/presentation/doctor/history/widgets/card_doctor_history.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AdminHomePage extends StatefulWidget {
   const AdminHomePage({super.key});
@@ -75,7 +75,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                                 return ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
                                   child: Image.network(
-                                    '${Variables.baseUrl}/storage/${data.clinicImage}',
+                                    '${dotenv.env['BASE_URL']}/storage/${data.clinicImage}',
                                     width: 40.0,
                                     height: 40.0,
                                     fit: BoxFit.fill,

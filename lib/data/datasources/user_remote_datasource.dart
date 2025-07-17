@@ -13,7 +13,7 @@ import 'auth_local_datasource.dart';
 class UserRemoteDatasource {
   Future<Either<String, bool>> checkUser(String email) async {
     final response = await http.post(
-      Uri.parse("${dotenv.env["BASE_URL"]}/api/user/check"),
+      Uri.parse("${dotenv.env["BASE_URL"]}/user/check"),
       headers: {
         'Authorization': 'Bearer ${dotenv.env["TOKEN"]}',
         'Accept': 'application/json',
@@ -33,7 +33,7 @@ class UserRemoteDatasource {
   Future<Either<String, String>> createUser(
       CreateUserRequestModel model) async {
     final response = await http.post(
-      Uri.parse("${dotenv.env["BASE_URL"]}/api/user"),
+      Uri.parse("${dotenv.env["BASE_URL"]}/user"),
       headers: {
         'Authorization': 'Bearer ${dotenv.env["TOKEN"]}',
         'Accept': 'application/json',
@@ -52,7 +52,7 @@ class UserRemoteDatasource {
 
   Future<Either<String, UserModel>> getUserEmail(String email) async {
     final response = await http.get(
-      Uri.parse("${dotenv.env["BASE_URL"]}/api/user/$email"),
+      Uri.parse("${dotenv.env["BASE_URL"]}/user/$email"),
       headers: {
         'Authorization': 'Bearer ${dotenv.env["TOKEN"]}',
         'Accept': 'application/json',
@@ -73,7 +73,7 @@ class UserRemoteDatasource {
     String id,
   ) async {
     final response = await http.put(
-      Uri.parse("${dotenv.env["BASE_URL"]}/api/user/google-id/$id"),
+      Uri.parse("${dotenv.env["BASE_URL"]}/user/google-id/$id"),
       headers: {
         'Authorization': 'Bearer ${dotenv.env["TOKEN"]}',
         'Accept': 'application/json',
@@ -100,7 +100,7 @@ class UserRemoteDatasource {
       'Content-Type': 'application/json',
     };
     final response = await http.put(
-      Uri.parse("${dotenv.env["BASE_URL"]}/api/user/${userData?.data?.user?.id}"),
+      Uri.parse("${dotenv.env["BASE_URL"]}/user/${userData?.data?.user?.id}"),
       headers: headers,
       body: model.toJson(),
     );

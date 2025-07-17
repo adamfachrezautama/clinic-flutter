@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_clinicapp/core/assets/assets.gen.dart';
 import 'package:flutter_clinicapp/core/components/spaces.dart';
 import 'package:flutter_clinicapp/core/constants/colors.dart';
-import 'package:flutter_clinicapp/core/constants/variabels.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:flutter_clinicapp/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_clinicapp/data/models/response/login_response_model.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_clinicapp/presentation/doctor/chat/blocs/active_orders/a
 import 'package:flutter_clinicapp/presentation/doctor/chat/blocs/inactive_orders/inactive_orders_bloc.dart';
 import 'package:flutter_clinicapp/presentation/doctor/chat/widgets/card_chat.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ChatDoctorPage extends StatefulWidget {
   const ChatDoctorPage({super.key});
@@ -102,7 +102,7 @@ class _ChatDoctorPageState extends State<ChatDoctorPage> {
                                             ? NetworkImage(snapshot
                                                 .data!.data!.user!.image!)
                                             : NetworkImage(
-                                                '${Variables.baseUrl}${snapshot.data!.data!.user!.image}'))
+                                                '${dotenv.env['BASE_URL']}${snapshot.data!.data!.user!.image}'))
                                         : AssetImage(Assets.images.doctor1.path)
                                             as ImageProvider,
                                     width: 38.0,

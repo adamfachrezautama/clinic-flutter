@@ -12,7 +12,7 @@ class AuthRemoteDatasource {
   Future<Either<String, LoginResponseModel>> login(
       String email, String password) async {
     final response = await http.post(
-      Uri.parse("${dotenv.env['BASE_URL']}/api/login"),
+      Uri.parse("${dotenv.env['BASE_URL']}/auth/login"),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ class AuthRemoteDatasource {
       String idToken,
       ) async {
     final response = await http.post(
-      Uri.parse("${dotenv.env['BASE_URL']}/api/google-login"),
+      Uri.parse("${dotenv.env['BASE_URL']}/auth/login/google"),
       headers: {
         'Accept': 'application/json',
       },
@@ -57,7 +57,7 @@ class AuthRemoteDatasource {
 
   Future<Either<String, String>> logout() async {
     final response = await http.post(
-      Uri.parse("${dotenv.env['BASE_URL']}/api/logout"),
+      Uri.parse("${dotenv.env['BASE_URL']}/logout"),
       headers: {
         'Authorization': 'Bearer ${dotenv.env['TOKEN']}',
         'Accept': 'application/json',
@@ -79,7 +79,7 @@ class AuthRemoteDatasource {
 
   Future<Either<String, LoginResponseModel>> loginGoogle(String idToken) async {
     final response = await http.post(
-      Uri.parse('${dotenv.env['BASE_URL']}/api/login/google'),
+      Uri.parse('${dotenv.env['BASE_URL']}/auth/login/google'),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -104,7 +104,7 @@ class AuthRemoteDatasource {
     };
     final response = await http.put(
       Uri.parse(
-          "${dotenv.env['BASE_URL']}/api/update-token/${userData?.data?.user?.id}"),
+          "${dotenv.env['BASE_URL']}/update-token/${userData?.data?.user?.id}"),
       headers: headers,
       body: jsonEncode({"one_signal_token": oneSignalToken}),
     );

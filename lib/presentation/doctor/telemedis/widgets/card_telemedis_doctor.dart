@@ -1,22 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clinicapp/core/assets/assets.gen.dart';
 import 'package:flutter_clinicapp/core/components/buttons.dart';
 import 'package:flutter_clinicapp/core/components/spaces.dart';
 import 'package:flutter_clinicapp/core/constants/colors.dart';
-import 'package:flutter_clinicapp/core/constants/variabels.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:flutter_clinicapp/core/extensions/string_ext.dart';
 import 'package:flutter_clinicapp/core/utils/convert.dart';
 import 'package:flutter_clinicapp/data/models/response/order_response_model.dart';
-
-import 'package:flutter_clinicapp/presentation/doctor/telemedis/pages/vidcall_dcotor_page.dart';
 import 'package:flutter_clinicapp/presentation/history/widgets/loading_vidcall_page.dart';
-import 'package:flutter_clinicapp/presentation/telemedis/blocs/agora_token/agora_token_bloc.dart';
-import 'package:flutter_clinicapp/presentation/telemedis/pages/vidcall_page.dart';
-import 'package:flutter_clinicapp/presentation/telemedis/pages/video_call_page.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CardTelemedisDoctor extends StatelessWidget {
   final OrderModel model;
@@ -56,7 +49,7 @@ class CardTelemedisDoctor extends StatelessWidget {
                     child: Image.network(
                       model.patient!.image!.contains('https')
                           ? model.patient!.image!
-                          : "${Variables.baseUrl}${model.patient?.image}",
+                          : "${dotenv.env['BASE_URL']}${model.patient?.image}",
                       width: 80,
                       height: 80,
                     ),

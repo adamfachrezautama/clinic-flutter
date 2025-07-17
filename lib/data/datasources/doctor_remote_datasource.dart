@@ -15,7 +15,7 @@ class DoctorRemoteDatasource {
     final userData = await AuthLocalDatasource().getUserData();
 
     final response = await http.get(
-      Uri.parse('${dotenv.env["BASE_URL"]}/api/doctors'),
+      Uri.parse('${dotenv.env["BASE_URL"]}/doctors'),
       headers: {
         'Authorization': 'Bearer ${userData?.data?.token}',
         'Accept': 'application/json',
@@ -37,7 +37,7 @@ class DoctorRemoteDatasource {
       'Authorization': 'Bearer ${userData?.data?.token}',
     };
     var request = http.MultipartRequest(
-        'POST', Uri.parse('${dotenv.env["BASE_URL"]}/api/doctors'));
+        'POST', Uri.parse('${dotenv.env["BASE_URL"]}/doctors'));
     request.fields.addAll(model.toMap());
     if (model.image != null) {
       request.files
@@ -62,7 +62,7 @@ class DoctorRemoteDatasource {
 
   Future<Either<String, String>> deleteDoctor(String id) async {
     final response = await http.delete(
-      Uri.parse('${dotenv.env["BASE_URL"]}/api/doctors/$id'),
+      Uri.parse('${dotenv.env["BASE_URL"]}/doctors/$id'),
       headers: {
         'Authorization': 'Bearer ${dotenv.env["TOKEN"]}',
         'Accept': 'application/json',
@@ -81,7 +81,7 @@ class DoctorRemoteDatasource {
     final userData = await AuthLocalDatasource().getUserData();
     log("Token: ${userData?.data?.token}");
     final response = await http.get(
-      Uri.parse('${dotenv.env["BASE_URL"]}/api/doctors/active'),
+      Uri.parse('${dotenv.env["BASE_URL"]}/doctors/active'),
       headers: {
         'Authorization': 'Bearer ${userData?.data?.token}',
         'Accept': 'application/json',
@@ -101,7 +101,7 @@ class DoctorRemoteDatasource {
     final userData = await AuthLocalDatasource().getUserData();
     final response = await http.get(
       Uri.parse(
-          '${dotenv.env["BASE_URL"]}/api/clinic/${userData?.data?.user?.clinicId}'),
+          '${dotenv.env["BASE_URL"]}/clinic/${userData?.data?.user?.clinicId}'),
       headers: {
         'Authorization': 'Bearer ${userData?.data?.token}',
         'Accept': 'application/json',

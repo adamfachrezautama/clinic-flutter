@@ -15,9 +15,9 @@ class GetSpecialitationsBloc
       : super(const GetSpecialitationsState.initial()) {
     on<_GetSpecialitations>((event, emit) async {
       emit(const _Loading());
-      final result = await datasource.getSpecialitations();
+      final result = await datasource.getSpecialations();
       result.fold((l) => emit(GetSpecialitationsState.error(l)),
-          (r) => emit(_Success(r)));
+          (r) => emit(_Success(r as SpecialitationResponseModel)));
     });
   }
 }

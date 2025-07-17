@@ -36,7 +36,7 @@ class ChatBubble extends StatelessWidget {
   final String clock;
   @override
   Widget build(BuildContext context) {
-    final time = Convert.extractTime(clock);
+    final time = Convert.extracTime(clock);
     final isOnLeft = direction == Direction.left;
     return Column(
       crossAxisAlignment:

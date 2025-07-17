@@ -58,7 +58,7 @@ class _ChatWithDoctorPageState extends State<ChatWithDoctorPage> {
     final channel = Channel(
       id: generateChannelId(
           currentUser!.uid, partner!.id, widget.order.schedule!),
-      memberIds: [currentUser!.uid, partner!.id],
+      memberId: [currentUser!.uid, partner!.id],
       members: [UserModel.fromFirebaseUser(currentUser!), partner!],
       lastMessage: _messageController!.text.trim(),
       sendBy: currentUser!.uid,

@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_clinicapp/core/assets/assets.gen.dart';
 import 'package:flutter_clinicapp/core/components/buttons.dart';
 import 'package:flutter_clinicapp/core/components/spaces.dart';
 import 'package:flutter_clinicapp/core/constants/colors.dart';
-import 'package:flutter_clinicapp/core/constants/variabels.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:flutter_clinicapp/core/extensions/string_ext.dart';
 import 'package:flutter_clinicapp/data/models/response/doctor_response_model.dart';
@@ -91,7 +91,7 @@ class DetailDoctorPage extends StatelessWidget {
                       ? Image.network(
                           doctor.image!.contains('https')
                               ? doctor.image!
-                              : "${Variables.baseUrl}${doctor.image}",
+                              : "${dotenv.env['BASE_URL']}${doctor.image}",
                           width: context.deviceWidth,
                           fit: BoxFit.cover,
                         )

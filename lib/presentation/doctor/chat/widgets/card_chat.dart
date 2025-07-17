@@ -6,12 +6,12 @@ import 'package:flutter_clinicapp/core/assets/assets.gen.dart';
 
 import 'package:flutter_clinicapp/core/components/spaces.dart';
 import 'package:flutter_clinicapp/core/constants/colors.dart';
-import 'package:flutter_clinicapp/core/constants/variabels.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:flutter_clinicapp/data/datasources/firebase_datasource.dart';
 import 'package:flutter_clinicapp/data/models/response/order_response_model.dart';
 import 'package:flutter_clinicapp/data/models/response/user_model.dart';
 import 'package:flutter_clinicapp/presentation/chat/pages/room_chat_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CardChat extends StatefulWidget {
   final OrderModel model;
@@ -90,7 +90,7 @@ class _CardChatState extends State<CardChat> {
                                           ?.contains('googleusercontent.com') ==
                                       true
                                   ? widget.model.patient!.image!
-                                  : '${Variables.baseUrl}${widget.model.patient?.image}',
+                                  : '${dotenv.env['BASE_URL']}${widget.model.patient?.image}',
                             ),
                           )
                         : Image.asset(

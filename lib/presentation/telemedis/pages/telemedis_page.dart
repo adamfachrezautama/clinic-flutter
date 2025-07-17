@@ -8,9 +8,10 @@ import 'package:flutter_clinicapp/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_clinicapp/data/models/response/login_response_model.dart';
 import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/get_specialitations/get_specialitations_bloc.dart';
 import 'package:flutter_clinicapp/presentation/chat/blocs/get_doctors_active/get_doctors_active_bloc.dart';
-import 'package:flutter_clinicapp/presentation/chat/widgets/specialitation_menu.dart';
 import 'package:flutter_clinicapp/presentation/telemedis/widgets/card_doctor_telemedis.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../chat/widgets/specialation_menu.dart';
 
 class TelemedisPage extends StatefulWidget {
   const TelemedisPage({super.key});

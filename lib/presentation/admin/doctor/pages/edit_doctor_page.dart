@@ -443,7 +443,7 @@ class _EditDoctorPageState extends State<EditDoctorPage> {
                     label: 'Rp. 19.000',
                     keyboardType: TextInputType.number,
                     onChanged: (value) {
-                      final int priceValue = value.toIntegerFromText;
+                      final int priceValue = value.tointegerFromText;
                       _telemedicRateController!.text =
                           priceValue.toString().currencyFormatRpV2;
                       _telemedicRateController!.selection =
@@ -469,7 +469,7 @@ class _EditDoctorPageState extends State<EditDoctorPage> {
                     label: 'Rp. 19.000',
                     keyboardType: TextInputType.number,
                     onChanged: (value) {
-                      final int priceValue = value.toIntegerFromText;
+                      final int priceValue = value.tointegerFromText;
                       _chatPremiumRateController!.text =
                           priceValue.toString().currencyFormatRpV2;
                       _chatPremiumRateController!.selection =

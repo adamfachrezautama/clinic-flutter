@@ -15,7 +15,7 @@ class OrderRemoteDatasource {
     final userData = await AuthLocalDatasource().getUserData();
     final response = await http.get(
       Uri.parse(
-          '${dotenv.env["BASE_URL"]}/api/orders/clinic/${userData?.data?.user?.clinicId}'),
+          '${dotenv.env["BASE_URL"]}/orders/clinic/${userData?.data?.user?.clinicId}'),
       headers: {
         'Authorization': 'Bearer ${userData?.data?.token}',
         'Accept': 'application/json',
@@ -34,7 +34,7 @@ class OrderRemoteDatasource {
       OrderRequestModel model) async {
     final userData = await AuthLocalDatasource().getUserData();
     final response = await http.post(
-      Uri.parse('${dotenv.env["BASE_URL"]}/api/orders'),
+      Uri.parse('${dotenv.env["BASE_URL"]}/orders'),
       headers: {
         'Authorization': 'Bearer ${userData?.data?.token}',
         'Accept': 'application/json',
@@ -54,7 +54,7 @@ class OrderRemoteDatasource {
   // Future<Either<String, SummaryResponseModel>> getSummaryClinic() async {
   //   const String clinicId = "1";
   //   final response = await http.get(
-  //     Uri.parse('${Variables.baseUrl}/api/orders/summary/$clinicId'),
+  //     Uri.parse('${Variables.baseUrl}/orders/summary/$clinicId'),
   //     headers: {
   //       'Authorization': 'Bearer ${Variables.token}',
   //       'Accept': 'application/json',
@@ -73,7 +73,7 @@ class OrderRemoteDatasource {
     final userData = await AuthLocalDatasource().getUserData();
     final response = await http.get(
       Uri.parse(
-          '${dotenv.env["BASE_URL"]}/api/orders/patient/${userData?.data?.user?.id}'),
+          '${dotenv.env["BASE_URL"]}/orders/patient/${userData?.data?.user?.id}'),
       headers: {
         'Authorization': 'Bearer ${userData?.data?.token}',
         'Accept': 'application/json',
@@ -93,7 +93,7 @@ class OrderRemoteDatasource {
     final userData = await AuthLocalDatasource().getUserData();
     final response = await http.get(
       Uri.parse(
-          '${dotenv.env["BASE_URL"]}/api/orders/doctor/${userData?.data?.user?.id}'),
+          '${dotenv.env["BASE_URL"]}/orders/doctor/${userData?.data?.user?.id}'),
       headers: {
         'Authorization': 'Bearer ${userData?.data?.token}',
         'Accept': 'application/json',
@@ -114,7 +114,7 @@ class OrderRemoteDatasource {
     final userData = await AuthLocalDatasource().getUserData();
     final response = await http.get(
       Uri.parse(
-          '${dotenv.env["BASE_URL"]}/api/orders/doctor/${userData?.data?.user?.id}/$service/$statusService'),
+          '${dotenv.env["BASE_URL"]}/orders/doctor/${userData?.data?.user?.id}/$service/$statusService'),
       headers: {
         'Authorization': 'Bearer ${userData?.data?.token}',
         'Accept': 'application/json',
@@ -134,7 +134,7 @@ class OrderRemoteDatasource {
   Future<Either<String, String>> xenditCallback(
       String externalId, String status) async {
     final response = await http.post(
-      Uri.parse('${dotenv.env["BASE_URL"]}/api/xendit-callback'),
+      Uri.parse('${dotenv.env["BASE_URL"]}/xendit-callback'),
       headers: {
         // 'Authorization': 'Bearer ${Variables.token}',
         'Accept': 'application/json',

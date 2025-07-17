@@ -12,7 +12,7 @@ class SpecialitationRemoteDatasource {
   Future<Either<String, SpecialitationModel>> getSpecialations() async {
     final userData = await AuthLocalDatasource().getUserData();
     final response = await http.get(
-      Uri.parse("${dotenv.env["BASE_URL"]}/api/specialists"),
+      Uri.parse("${dotenv.env["BASE_URL"]}/specialists"),
       headers: {
         'Authorization': 'Bearer ${userData?.data?.token}',
         'Accept': 'application/json',

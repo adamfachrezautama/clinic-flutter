@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clinicapp/core/assets/assets.gen.dart';
 import 'package:flutter_clinicapp/core/components/spaces.dart';
 import 'package:flutter_clinicapp/core/constants/colors.dart';
-import 'package:flutter_clinicapp/core/constants/variabels.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:flutter_clinicapp/core/utils/convert.dart';
 import 'package:flutter_clinicapp/data/models/response/doctor_response_model.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CardDoctorWidget extends StatelessWidget {
   final DoctorModel doctor;
@@ -48,7 +48,7 @@ class CardDoctorWidget extends StatelessWidget {
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: Image.network(
-                          "${Variables.baseUrl}${doctor.image}",
+                          "${dotenv.env["BASE_URL"]}${doctor.image}",
                           width: 87.0,
                           height: 87.0,
                           fit: BoxFit.cover,

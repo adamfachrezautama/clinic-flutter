@@ -21,6 +21,8 @@ import 'package:flutter_clinicapp/core/constants/colors.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../core/components/image_picker_widget.dart';
+
 class AddDoctorPage extends StatefulWidget {
   const AddDoctorPage({super.key});
 

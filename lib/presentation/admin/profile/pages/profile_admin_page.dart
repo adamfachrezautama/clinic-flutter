@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_clinicapp/core/assets/assets.gen.dart';
 import 'package:flutter_clinicapp/core/components/spaces.dart';
 import 'package:flutter_clinicapp/core/constants/colors.dart';
-import 'package:flutter_clinicapp/core/constants/variabels.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:flutter_clinicapp/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_clinicapp/presentation/admin/home/blocs/get_clinic/get_clinic_bloc.dart';
 import 'package:flutter_clinicapp/presentation/auth/pages/onboarding_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ProfileAdminPage extends StatelessWidget {
   const ProfileAdminPage({super.key});
@@ -79,7 +79,7 @@ class ProfileAdminPage extends StatelessWidget {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
                                   child: Image.network(
-                                    '${Variables.baseUrl}/storage/${clinics.clinicImage}',
+                                    '${dotenv.env['BASE_URL']}/storage/${clinics.clinicImage}',
                                     width: 40.0,
                                     height: 40.0,
                                     fit: BoxFit.fill,
@@ -164,7 +164,7 @@ class ProfileAdminPage extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(36),
                                 child: Image.network(
-                                  '${Variables.baseUrl}/storage/${clinics.clinicImage}',
+                                  '${dotenv.env['BASE_URL']}/storage/${clinics.clinicImage}',
                                   width: 72.0,
                                   height: 72.0,
                                   fit: BoxFit.cover,

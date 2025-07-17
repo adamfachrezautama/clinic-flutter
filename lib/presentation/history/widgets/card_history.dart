@@ -9,10 +9,7 @@ import 'package:flutter_clinicapp/core/utils/convert.dart';
 import 'package:flutter_clinicapp/data/models/response/order_response_model.dart';
 import 'package:flutter_clinicapp/presentation/chat/pages/chat_with_doctor_page.dart';
 import 'package:flutter_clinicapp/presentation/history/widgets/loading_vidcall_page.dart';
-import 'package:flutter_clinicapp/presentation/telemedis/blocs/agora_token/agora_token_bloc.dart';
-import 'package:flutter_clinicapp/presentation/telemedis/pages/vidcall_page.dart';
-import 'package:flutter_clinicapp/presentation/telemedis/pages/video_call_page.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CardHistory extends StatelessWidget {
   final OrderModel order;
@@ -67,7 +64,7 @@ class CardHistory extends StatelessWidget {
                           child: Image.network(
                             order.doctor!.image!.contains('https')
                                 ? order.doctor!.image!
-                                : "${Variables.baseUrl}${order.doctor!.image}",
+                                : "${dotenv.env['BASE_URL']}${order.doctor!.image}",
                             width: 87,
                             height: 87,
                             fit: BoxFit.cover,

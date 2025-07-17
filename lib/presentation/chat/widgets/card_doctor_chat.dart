@@ -6,12 +6,12 @@ import 'package:flutter_clinicapp/core/assets/assets.gen.dart';
 import 'package:flutter_clinicapp/core/components/buttons.dart';
 import 'package:flutter_clinicapp/core/components/spaces.dart';
 import 'package:flutter_clinicapp/core/constants/colors.dart';
-import 'package:flutter_clinicapp/core/constants/variabels.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:flutter_clinicapp/core/extensions/string_ext.dart';
 import 'package:flutter_clinicapp/core/utils/convert.dart';
 import 'package:flutter_clinicapp/data/models/response/doctor_response_model.dart';
 import 'package:flutter_clinicapp/presentation/chat/pages/detail_doctor_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CardDoctorChat extends StatelessWidget {
   final DoctorModel model;
@@ -63,7 +63,7 @@ class CardDoctorChat extends StatelessWidget {
                             child: Image.network(
                               model.image!.contains('https')
                                   ? model.image!
-                                  : "${Variables.baseUrl}${model.image}",
+                                  : "${dotenv.env['BASE_URL']}${model.image}",
                               width: 87.0,
                               height: 87.0,
                               fit: BoxFit.cover,
