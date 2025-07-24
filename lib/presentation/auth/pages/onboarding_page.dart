@@ -2,24 +2,23 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clinicapp/core/assets/assets.gen.dart';
-import 'package:flutter_clinicapp/core/components/buttons.dart';
-import 'package:flutter_clinicapp/core/components/spaces.dart';
-import 'package:flutter_clinicapp/core/constants/colors.dart';
-import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
-import 'package:flutter_clinicapp/data/datasources/auth_local_datasource.dart';
-import 'package:flutter_clinicapp/data/datasources/auth_remote_datasource.dart';
-import 'package:flutter_clinicapp/data/datasources/firebase_datasource.dart';
-import 'package:flutter_clinicapp/data/models/response/user_model.dart';
-
-import 'package:flutter_clinicapp/presentation/admin/home/pages/admin_main_page.dart';
-import 'package:flutter_clinicapp/presentation/auth/pages/privacy_policy_page.dart';
-import 'package:flutter_clinicapp/presentation/doctor/home/pages/doctor_home_page.dart';
-import 'package:flutter_clinicapp/presentation/home/pages/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
+import 'package:flutter_clinicapp/presentation/auth/pages/privacy_policy_page.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
+import '../../../core/assets/assets.gen.dart';
+import '../../../core/components/buttons.dart';
+import '../../../core/components/spaces.dart';
+import '../../../core/constants/colors.dart';
+import '../../../data/datasources/auth_local_datasource.dart';
+import '../../../data/datasources/auth_remote_datasource.dart';
+import '../../../data/datasources/firebase_datasource.dart';
+import '../../../data/models/response/user_model.dart';
+import '../../admin/home/pages/admin_main_page.dart';
+import '../../doctor/home/pages/doctor_home_page.dart';
+import '../../home/pages/home_page.dart';
 import '../blocs/login_google/login_google_bloc.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -37,46 +36,39 @@ class _OnboardingPageState extends State<OnboardingPage> {
       await FirebaseAuth.instance.signOut();
 
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      if (googleUser == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Login dibatalkan")),
-        );
-        return;
-      }
-
       final GoogleSignInAuthentication googleAuth =
-      await googleUser.authentication;
-
-      final idToken = googleAuth.idToken;
-
-      if (idToken == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("ID Token kosong, tidak bisa login.")),
-        );
-        return;
-      }
+      await googleUser!.authentication;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
-        idToken: idToken,
+        idToken: googleAuth.idToken,
       );
 
-      final UserCredential userCredential =
+      UserCredential userCredential =
       await FirebaseAuth.instance.signInWithCredential(credential);
 
-      uid = userCredential.user?.uid ?? '';
+      final firebaseUser = userCredential.user;
+      final firebaseIdToken = await firebaseUser?.getIdToken();
 
-      // Baru kirim ke server
+      if (firebaseIdToken == null) {
+        throw Exception("Gagal mendapatkan Firebase ID Token");
+      }
+
+      // Simpan UID (jika tetap perlu)
+      uid = firebaseUser?.uid;
+
+      // Kirim ID token ke LoginGoogleBloc
       context.read<LoginGoogleBloc>().add(
-        LoginGoogleEvent.loginGoogle(idToken),
+        LoginGoogleEvent.loginGoogle(firebaseIdToken),
       );
 
-      log("UID : $uid");
+      log("UID: $uid");
+      log("Firebase ID Token: $firebaseIdToken");
+
     } catch (e) {
-      final snackBar = SnackBar(
-        content: Text("Google Login Error: $e"),
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('$e')),
       );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       log("Google Login Error : $e");
     }
   }
@@ -139,7 +131,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               bottom: 0,
               child: Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 width: context.deviceWidth,
                 decoration: const BoxDecoration(
                   color: AppColors.white,
@@ -183,23 +175,26 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             log(data.toJson());
                             await AuthLocalDatasource().saveUserData(data);
 
+                            final userRole = data.data!.user?.role;
                             //role
-                            if (data.data!.user?.role! == 'doctor') {
+                            if (userRole == 'doctor') {
                               context.push(const DoctorHomePage());
                               return;
-                            } else if (data.data!.user?.role! == 'admin') {
+                            } else if (userRole == 'admin') {
                               context.push(const AdminMainPage());
                               return;
                             }
-                            if (data.data!.isNew!) {
+                            if (data.data!.isNew == true) {
                               final existingUser = await FirebaseDatasource
                                   .instance
                                   .getUserByEmail(data.data!.user!.email!);
                               if (existingUser == null) {
-                                final model = UserModel(
+                                final model =  UserModel(
                                   id: uid!,
                                   userName: data.data!.user!.name!,
                                   email: data.data!.user!.email!,
+                                  role: data.data!.user!.role!,
+
                                 );
                                 await FirebaseDatasource.instance
                                     .setUserToDB(model);
@@ -246,7 +241,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               Assets.images.google.path,
                               height: 24,
                               width: 24,
-                              color: Colors.white,
+
                             ),
                             fontSize: 14.0,
                           );

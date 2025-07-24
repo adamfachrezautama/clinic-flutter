@@ -10,10 +10,10 @@ import 'dart:convert';
 //                 ], 201);
 
 class LoginResponseModel {
-  final String? status;
+  final bool status;
   final LoginModel? data;
   LoginResponseModel({
-    this.status,
+    required this.status,
     this.data,
   });
 

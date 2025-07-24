@@ -1,4 +1,4 @@
-import 'package:flutter_clinicapp/data/models/response/specialitation_response_model.dart';
+import 'package:flutter_clinicapp/data/models/response/specialization_response_model.dart';
 
 class DoctorResponseModel {
   final bool? success;
@@ -46,7 +46,7 @@ class DoctorModel {
   final String? image;
   final String? status;
   final ClinicModel? clinic;
-  final SpecialitationModel? specialitation;
+  final SpecializationModel? specialization;
 
   DoctorModel({
     this.address,
@@ -59,7 +59,7 @@ class DoctorModel {
     this.image,
     this.status,
     this.clinic,
-    this.specialitation,
+    this.specialization,
     this.id,
     this.name,
     this.email,
@@ -91,10 +91,10 @@ class DoctorModel {
     image: json["image"],
     status: json["status"],
     clinic: json["clinic"] == null ? null : ClinicModel.fromMap(json["clinic"],),
-    specialitation:
-        json["specialitation"] == null
+    specialization:
+        json["specialization"] == null
             ? null
-            : SpecialitationModel.fromMap(json["specialitation"]),
+            : SpecializationModel.fromMap(json["specialization"]),
   );
 
   Map<String, dynamic> toMap() => {
@@ -117,7 +117,7 @@ class DoctorModel {
     "image": image,
     "status": status,
     "clinic": clinic?.toMap(),
-    "specialitation": specialitation?.toMap(),
+    "specialization": specialization?.toMap(),
   };
 }
 
@@ -128,7 +128,7 @@ class ClinicModel {
   final String? phone;
   final String? openTime;
   final String? closeTime;
-  final String? specialitation;
+  final String? specialization;
   final String? website;
   final String? email;
   final String? note;
@@ -143,7 +143,7 @@ class ClinicModel {
     this.phone,
     this.openTime,
     this.closeTime,
-    this.specialitation,
+    this.specialization,
     this.website,
     this.email,
     this.note,
@@ -159,7 +159,7 @@ class ClinicModel {
     phone: json["phone"],
     openTime: json["open_time"],
     closeTime: json["close_time"],
-    specialitation: json["specialitation"],
+    specialization: json["specialization"],
     website: json["website"],
     email: json["email"],
     note:json["note"],
@@ -175,7 +175,7 @@ class ClinicModel {
     "phone":phone,
     "open_time":openTime,
     "close_time":closeTime,
-    "specialistation":specialitation,
+    "specialization":specialization,
     "website":website,
     "email":email,
     "note":note,

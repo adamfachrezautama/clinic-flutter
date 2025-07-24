@@ -81,7 +81,7 @@ class CardDoctorTelemedis extends StatelessWidget {
                       ),
                       const SpaceHeight(4),
                       Text(
-                        model.specialitation?.name ?? '-',
+                        model.specialization?.name ?? '-',
                         style: const TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.w400,
@@ -96,8 +96,9 @@ class CardDoctorTelemedis extends StatelessWidget {
                       const SpaceHeight(8),
                       _itemRow(
                         Assets.icons.clockPrimary.path,
-                        Convert.formatTimeWithoutSeconds(
-                            model.startTime?.toString() ?? '00:00:00'),
+                        model.startTime != null && model.endTime != null
+                            ? "${Convert.formatToReadableTime2(model.startTime.toString())} - ${Convert.formatToReadableTime2(model.endTime.toString())} WIB"
+                            : " -",
                       ),
                     ],
                   ),

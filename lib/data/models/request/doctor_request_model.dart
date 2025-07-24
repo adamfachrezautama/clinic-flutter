@@ -8,7 +8,7 @@ class DoctorRequestModel {
   final String status;
   final String gender;
   final String certification;
-  final int specialitationId;
+  final int specializationId;
   final String telemedicineFee;
   final String chatFee;
   final String startTime;
@@ -22,7 +22,7 @@ class DoctorRequestModel {
     required this.status,
     required this.gender,
     required this.certification,
-    required this.specialitationId,
+    required this.specializationId,
     required this.telemedicineFee,
     required this.chatFee,
     required this.startTime,
@@ -39,7 +39,7 @@ class DoctorRequestModel {
     "role": role,
     "gender": gender,
     "certification": certification,
-    "specialist_id": specialitationId.toString(),
+    "specialization_id": specializationId.toString(),
     "telemedicine_fee": telemedicineFee,
     "chat_fee": chatFee,
     "start_time": startTime,
@@ -54,7 +54,7 @@ class DoctorRequestModel {
     "role": role,
     "gender": gender,
     "certification": certification,
-    "specialis_id": specialitationId.toString(),
+    "specialization_id": specializationId.toString(),
     "telemedicine_fee": telemedicineFee,
     "chat_fee":chatFee,
     "start_time": startTime,

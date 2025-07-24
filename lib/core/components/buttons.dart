@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -76,6 +76,7 @@ class Button extends StatelessWidget {
               ? ElevatedButton(
                 onPressed: disabled ? null : onPressed,
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(borderRadius),

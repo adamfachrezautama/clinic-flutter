@@ -134,7 +134,7 @@ class DetailDoctorPage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                doctor.specialitation?.name ?? "-",
+                                doctor.specialization?.name ?? "-",
                                 style: const TextStyle(
                                   fontSize: 12.0,
                                   fontWeight: FontWeight.w500,

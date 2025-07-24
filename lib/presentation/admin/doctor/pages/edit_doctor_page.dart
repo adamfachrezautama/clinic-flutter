@@ -14,13 +14,13 @@ import 'package:flutter_clinicapp/core/extensions/string_ext.dart';
 import 'package:flutter_clinicapp/core/utils/convert.dart';
 import 'package:flutter_clinicapp/data/models/request/doctor_request_model.dart';
 import 'package:flutter_clinicapp/data/models/response/doctor_response_model.dart';
-import 'package:flutter_clinicapp/data/models/response/specialitation_response_model.dart';
-import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/get_specialitations/get_specialitations_bloc.dart';
 import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/update_doctor/update_doctor_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../data/models/response/specialization_response_model.dart';
 import '../../../chat/blocs/get_doctors/get_doctors_bloc.dart';
+import '../blocs/get_specialization/get_specializations_bloc.dart';
 
 class EditDoctorPage extends StatefulWidget {
   final DoctorModel model;
@@ -45,7 +45,7 @@ class _EditDoctorPageState extends State<EditDoctorPage> {
   TimeOfDay? _startTime;
   TimeOfDay? _endTime;
   XFile? imageFile;
-  SpecialitationModel? _selectedSpecialitation;
+  SpecializationModel? _selectedSpecialization;
   @override
   void initState() {
     _selectedStatus = widget.model.status;
@@ -58,10 +58,10 @@ class _EditDoctorPageState extends State<EditDoctorPage> {
         TextEditingController(text: widget.model.telemedicineFee.toString());
     _chatPremiumRateController =
         TextEditingController(text: widget.model.chatFee.toString());
-    _selectedSpecialitation = widget.model.specialitation;
+    _selectedSpecialization = widget.model.specialization;
     context
-        .read<GetSpecialitationsBloc>()
-        .add(const GetSpecialitationsEvent.getSpecialitations());
+        .read<GetSpecializationsBloc>()
+        .add(const GetSpecializationsEvent.getSpecializations());
 
     super.initState();
   }
@@ -143,7 +143,7 @@ class _EditDoctorPageState extends State<EditDoctorPage> {
                       status: _selectedStatus ?? "Active",
                       gender: _selectedGender!,
                       certification: _sertificationController!.text,
-                      specialitationId: _selectedSpecialitation!.id,
+                      specializationId: _selectedSpecialization!.id,
                       telemedicineFee: telemedicRate,
                       chatFee: chatPremiumRate,
                       startTime: startTime,
@@ -360,7 +360,7 @@ class _EditDoctorPageState extends State<EditDoctorPage> {
                   const SpaceHeight(
                     8,
                   ),
-                  BlocBuilder<GetSpecialitationsBloc, GetSpecialitationsState>(
+                  BlocBuilder<GetSpecializationsBloc, GetSpecializationsState>(
                     builder: (context, state) {
                       return state.maybeWhen(
                         orElse: () {
@@ -369,9 +369,9 @@ class _EditDoctorPageState extends State<EditDoctorPage> {
                           );
                         },
                         success: (data) {
-                          _selectedSpecialitation = data.data.firstWhere(
+                          _selectedSpecialization = data.data.firstWhere(
                               (element) =>
-                                  element.id == _selectedSpecialitation?.id,
+                                  element.id == _selectedSpecialization?.id,
                               orElse: () => data.data.first);
                           return DropdownButtonHideUnderline(
                             child: Container(
@@ -381,8 +381,8 @@ class _EditDoctorPageState extends State<EditDoctorPage> {
                               ),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 5),
-                              child: DropdownButton<SpecialitationModel>(
-                                value: _selectedSpecialitation,
+                              child: DropdownButton<SpecializationModel>(
+                                value: _selectedSpecialization,
                                 hint: const Text(
                                   "Pilih Spesialisasi",
                                   style: TextStyle(
@@ -396,18 +396,18 @@ class _EditDoctorPageState extends State<EditDoctorPage> {
                                 isExpanded: true,
                                 onChanged: (newValue) {
                                   if (newValue != null) {
-                                    _selectedSpecialitation = newValue;
-                                    log('Selected Specialitation: ${_selectedSpecialitation!.toMap()}');
+                                    _selectedSpecialization = newValue;
+                                    log('Selected Specialization: ${_selectedSpecialization!.toMap()}');
                                     setState(() {});
                                   }
                                 },
                                 items: data.data
-                                    .map<DropdownMenuItem<SpecialitationModel>>(
-                                        (SpecialitationModel specialitation) {
-                                  return DropdownMenuItem<SpecialitationModel>(
-                                    value: specialitation,
+                                    .map<DropdownMenuItem<SpecializationModel>>(
+                                        (SpecializationModel specialization) {
+                                  return DropdownMenuItem<SpecializationModel>(
+                                    value: specialization,
                                     child: Text(
-                                      specialitation.name,
+                                      specialization.name,
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,

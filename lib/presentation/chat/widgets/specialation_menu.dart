@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_clinicapp/core/constants/colors.dart';
 
-class SpecialitationMenu extends StatelessWidget {
+class SpecializationMenu extends StatelessWidget {
   final String label;
   final bool isActive;
   final VoidCallback onPressed;
-  const SpecialitationMenu({
+  const SpecializationMenu({
     super.key,
     required this.label,
     required this.isActive,

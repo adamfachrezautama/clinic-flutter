@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/add_doctor/add_doctor_bloc.dart';
 import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/delete_doctor/delete_doctor_bloc.dart';
-import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/get_specialitations/get_specialitations_bloc.dart';
+import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/get_specialization/get_specializations_bloc.dart';
 import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/update_doctor/update_doctor_bloc.dart';
 import 'package:flutter_clinicapp/presentation/admin/home/blocs/get_clinic/get_clinic_bloc.dart';
 import 'package:flutter_clinicapp/presentation/admin/home/blocs/get_orders_clinic/get_orders_clinic_bloc.dart';
@@ -41,7 +41,7 @@ import 'data/datasources/auth_local_datasource.dart';
 import 'data/datasources/auth_remote_datasource.dart';
 import 'data/datasources/doctor_remote_datasource.dart';
 import 'data/datasources/order_remote_datasource.dart';
-import 'data/datasources/specialitation_remote_datasource.dart';
+import 'data/datasources/specialization_remote_datasource.dart';
 import 'data/datasources/user_remote_datasource.dart';
 import 'data/models/response/login_response_model.dart';
 import 'firebase_options.dart';
@@ -137,7 +137,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
-              GetSpecialitationsBloc(SpecialitationRemoteDatasource()),
+              GetSpecializationsBloc(SpecializationRemoteDatasource()),
         ),
         BlocProvider(
           create: (context) => XenditCallbackBloc(OrderRemoteDatasource()),
@@ -174,24 +174,29 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: FutureBuilder<LoginResponseModel?>(
+          home: FutureBuilder<LoginResponseModel?>(
             future: AuthLocalDatasource().getUserData(),
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                if (snapshot.data != null) {
-                  //check role
-                  if (snapshot.data!.data!.user!.role == 'doctor') {
-                    return const DoctorHomePage();
-                  } else if (snapshot.data!.data!.user!.role == 'admin') {
-                    return const AdminMainPage();
-                  }
-                  return const HomePage();
-                } else {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Scaffold(body: Center(child: CircularProgressIndicator()));
+              }
+
+              if (snapshot.hasData && snapshot.data?.data?.user != null) {
+                final role = snapshot.data!.data!.user!.role;
+
+                if (role == 'doctor') {
                   return const DoctorHomePage();
+                } else if (role == 'admin') {
+                  return const AdminMainPage();
+                } else {
+                  return const HomePage();
                 }
               }
+
+              // Jika belum login / tidak ada data
               return const OnboardingPage();
-            }),
+            },
+          )
       ),
     );
   }

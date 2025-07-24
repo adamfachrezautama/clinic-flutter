@@ -161,4 +161,14 @@ class FirebaseDatasource {
     // Jika tidak ada pesan, anggap belum lebih dari sehari
     return false;
   }
+
+  Future<void> updateOneSignalToken(String email, String token) async {
+    final users = FirebaseFirestore.instance.collection('users');
+    final snapshot = await users.where('email', isEqualTo: email).limit(1).get();
+
+    if (snapshot.docs.isNotEmpty) {
+      await snapshot.docs.first.reference.update({'onesignal_token': token});
+    }
+  }
+
 }

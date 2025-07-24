@@ -98,6 +98,7 @@ class PremiumChatPage extends StatelessWidget {
                   return state.maybeWhen(
                     orElse: () {
                       return Button.filled(
+
                         width: 120,
                         height: 40,
                         borderRadius: 10,
@@ -123,6 +124,7 @@ class PremiumChatPage extends StatelessWidget {
                         },
                         label: 'Order ${isTelemedis ? 'Call' : 'Chat'}',
                         fontSize: 12.0,
+
                       );
                     },
                     loading: () {
@@ -201,7 +203,7 @@ class PremiumChatPage extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.info_outline,
-                          color: AppColors.yellow,
+                          color: AppColors.white,
                           size: 20,
                         ),
                         SpaceWidth(12),
@@ -219,12 +221,13 @@ class PremiumChatPage extends StatelessWidget {
                     ),
                     SpaceHeight(8),
                     Text(
-                      "Fasilitas ini bisa memberi diagnosa awal dalam kondisi pengguna. Chat di aplikasi tidak menggantikan interaksi fisik Dokter. Dokter akan meresepkan obat sesuai aturan berdasarkan informasi dari pengguna.",
+                      "Fasilitas ini bisa memberi diagnosa awal dalam kondisi pengguna."
+                          " Chat di aplikasi tidak menggantikan interaksi fisik Dokter. Dokter akan meresepkan obat sesuai aturan berdasarkan informasi dari pengguna.",
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                         fontSize: 12.0,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xffB2B2B2),
+                        color: Color(0xff1E293B),
                       ),
                     ),
                   ],

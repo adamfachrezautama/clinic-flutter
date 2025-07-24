@@ -17,8 +17,8 @@ class CreateOrderResponseModel{
   };
   }
 class Data{
-  final String patientId;
-  final String doctorId;
+  final String? patientId;
+  final String? doctorId;
   final String service;
   final String price;
   final String paymentUrl;
@@ -45,22 +45,36 @@ class Data{
     required this.id,
 });
 
-  factory Data.fromMap(Map<String, dynamic> json) => Data(
-    patientId: json["patient_id"],
-    doctorId: json["doctor_id"],
-    service: json["service"],
-    price:json["price"],
-    paymentUrl: json["payment_url"],
-    status: json["status"],
-    duration: json["duration"],
-    clinicId: json["clinicId"],
-    schedule: DateTime.parse(json["schedule"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
-    createdAt: DateTime.parse(json["created_at"]),
-    id: json["id"],
-  );
+
+
+  factory Data.fromMap(Map<String, dynamic> json) {
+    try {
+      print("DEBUG: Data JSON = ${json.toString()}");
+
+      return Data(
+        patientId: json["patient_id"]?.toString(),
+        doctorId: json["doctor_id"]?.toString(),
+        service: json["service"]?.toString() ?? '',
+        price: json["price"]?.toString() ?? '',
+        paymentUrl: json["payment_url"]?.toString() ?? '',
+        status: json["status"]?.toString() ?? '',
+        duration: json["duration"]?.toString() ?? '',
+        clinicId: json["clinicId"]?.toString() ?? '',
+        schedule: json["schedule"] != null ? DateTime.parse(json["schedule"]) : DateTime.now(),
+        updatedAt: json["updated_at"] != null ? DateTime.parse(json["updated_at"]) : DateTime.now(),
+        createdAt: json["created_at"] != null ? DateTime.parse(json["created_at"]) : DateTime.now(),
+        id: json["id"] is int ? json["id"] : int.tryParse(json["id"].toString()) ?? 0,
+      );
+    } catch (e, stack) {
+      print("ERROR parsing Data.fromMap: $e");
+      print(stack);
+      rethrow;
+    }
+  }
+
 
   Map<String, dynamic> toMap() =>{
+
     "patient_id": patientId,
     "doctor_id": doctorId,
     "service": service,

@@ -10,17 +10,16 @@ import 'auth_local_datasource.dart';
 
 class AuthRemoteDatasource {
   Future<Either<String, LoginResponseModel>> login(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     final response = await http.post(
       Uri.parse("${dotenv.env['BASE_URL']}/auth/login"),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: jsonEncode({
-        "email": email,
-        "password": password,
-      }),
+      body: jsonEncode({"email": email, "password": password}),
     );
     log("Status Code: ${response.statusCode}");
     log("Token: ${response.body}");
@@ -32,17 +31,11 @@ class AuthRemoteDatasource {
     }
   }
 
-  Future<Either<String, String>> googleLogin(
-      String idToken,
-      ) async {
+  Future<Either<String, String>> googleLogin(String idToken) async {
     final response = await http.post(
       Uri.parse("${dotenv.env['BASE_URL']}/auth/login/google"),
-      headers: {
-        'Accept': 'application/json',
-      },
-      body: jsonEncode({
-        "id_token": idToken,
-      }),
+      headers: {'Accept': 'application/json'},
+      body: jsonEncode({"id_token": idToken}),
     );
     log("Status Code: ${response.statusCode}");
     log("Token: ${response.body}");
@@ -90,12 +83,18 @@ class AuthRemoteDatasource {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return Right(LoginResponseModel.fromMap(jsonDecode(response.body)));
     } else {
-      return Left(jsonDecode(response.body)['message']);
+      try {
+        final error = jsonDecode(response.body);
+        return Left(error['message']?.toString() ?? 'Unknown error occurred');
+      } catch (e) {
+        return Left('Error parsing server response: $e');
+      }
     }
   }
 
   Future<Either<String, UserModel>> updateOneSignalToken(
-      String oneSignalToken) async {
+    String oneSignalToken,
+  ) async {
     final userData = await AuthLocalDatasource().getUserData();
     final Map<String, String> headers = {
       'Authorization': 'Bearer ${userData?.data?.token}',
@@ -104,7 +103,8 @@ class AuthRemoteDatasource {
     };
     final response = await http.put(
       Uri.parse(
-          "${dotenv.env['BASE_URL']}/update-token/${userData?.data?.user?.id}"),
+        "${dotenv.env['BASE_URL']}/user/update-token/${userData?.data?.user?.id}",
+      ),
       headers: headers,
       body: jsonEncode({"one_signal_token": oneSignalToken}),
     );

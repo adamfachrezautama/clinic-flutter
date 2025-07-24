@@ -203,10 +203,10 @@ class __$$AddAgoraCallImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? model = freezed}) {
+  $Res call({Object? model = null}) {
     return _then(
       _$AddAgoraCallImpl(
-        freezed == model
+        null == model
             ? _value.model
             : model // ignore: cast_nullable_to_non_nullable
                 as AgoraRequestModel,
@@ -233,12 +233,11 @@ class _$AddAgoraCallImpl implements _AddAgoraCall {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddAgoraCallImpl &&
-            const DeepCollectionEquality().equals(other.model, model));
+            (identical(other.model, model) || other.model == model));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(model));
+  int get hashCode => Object.hash(runtimeType, model);
 
   /// Create a copy of AddAgoraCallEvent
   /// with the given fields replaced by the non-null parameter values.

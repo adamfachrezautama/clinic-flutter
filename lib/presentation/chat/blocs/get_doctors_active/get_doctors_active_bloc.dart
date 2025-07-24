@@ -33,7 +33,7 @@ class GetDoctorsActiveBloc
                 element.name!
                     .toLowerCase()
                     .contains(event.query.toLowerCase()) ||
-                element.specialitation!.name
+                element.specialization!.name
                     .toLowerCase()
                     .contains(event.query.toLowerCase()),
           )
@@ -43,11 +43,16 @@ class GetDoctorsActiveBloc
 
     on<_SpealicationDoctor>((event, emit) async {
       emit(const _Loading());
+
+      for (var doctor in doctors) {
+        print('Doctor: ${doctor.name}, Specialization: ${doctor.specialization}');
+      }
+
       if (event.id == 0) {
         emit(GetDoctorsActiveState.success(doctors));
       } else {
         final newDoctors = doctors
-            .where((element) => element.specialitation!.id == event.id)
+            .where((element) => element.specialization?.id == event.id)
             .toList();
         emit(_Success(newDoctors));
       }

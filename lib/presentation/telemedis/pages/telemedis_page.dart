@@ -6,11 +6,11 @@ import 'package:flutter_clinicapp/core/constants/colors.dart';
 import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:flutter_clinicapp/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_clinicapp/data/models/response/login_response_model.dart';
-import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/get_specialitations/get_specialitations_bloc.dart';
 import 'package:flutter_clinicapp/presentation/chat/blocs/get_doctors_active/get_doctors_active_bloc.dart';
 import 'package:flutter_clinicapp/presentation/telemedis/widgets/card_doctor_telemedis.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../admin/doctor/blocs/get_specialization/get_specializations_bloc.dart';
 import '../../chat/widgets/specialation_menu.dart';
 
 class TelemedisPage extends StatefulWidget {
@@ -30,16 +30,16 @@ class _TelemedisPageState extends State<TelemedisPage> {
         .read<GetDoctorsActiveBloc>()
         .add(const GetDoctorsActiveEvent.getDoctors());
     context
-        .read<GetSpecialitationsBloc>()
-        .add(const GetSpecialitationsEvent.getSpecialitations());
+        .read<GetSpecializationsBloc>()
+        .add(const GetSpecializationsEvent.getSpecializations());
   }
 
-  void onSpecialitationTap(int index, int specialitationId) {
+  void onSpecializationTap(int index, int specializationId) {
     searchController.clear();
     indexValue = index;
     context
         .read<GetDoctorsActiveBloc>()
-        .add(GetDoctorsActiveEvent.spealicationDoctor(specialitationId));
+        .add(GetDoctorsActiveEvent.spealicationDoctor(specializationId));
     setState(() {});
   }
 
@@ -86,9 +86,9 @@ class _TelemedisPageState extends State<TelemedisPage> {
                               if (snapshot.hasData) {
                                 return CircleAvatar(
                                   radius: 20,
-                                  backgroundImage: NetworkImage(
-                                    snapshot.data!.data?.user?.image ?? '',
-                                  ),
+                                  backgroundImage:  (snapshot.data?.data?.user?.image?.isNotEmpty ?? false)
+                                      ? NetworkImage(snapshot.data!.data!.user!.image!)
+                                      : const AssetImage('assets/images/user-default.png') as ImageProvider, // Fallback image
                                 );
                               }
                               return const SizedBox.shrink();
@@ -263,7 +263,7 @@ class _TelemedisPageState extends State<TelemedisPage> {
                   width: context.deviceWidth,
                   height: 26,
                   child:
-                      BlocBuilder<GetSpecialitationsBloc, GetSpecialitationsState>(
+                      BlocBuilder<GetSpecializationsBloc, GetSpecializationsState>(
                     builder: (context, state) {
                       return state.maybeWhen(
                         orElse: () {
@@ -277,20 +277,20 @@ class _TelemedisPageState extends State<TelemedisPage> {
                             itemCount: data.data.length + 1,
                             itemBuilder: (BuildContext context, int index) {
                               if (index == 0) {
-                                return SpecialitationMenu(
+                                return SpecializationMenu(
                                   label: 'Semua',
                                   isActive: indexValue == index,
-                                  onPressed: () => onSpecialitationTap(index, 0),
+                                  onPressed: () => onSpecializationTap(index, 0),
                                 );
                               } else {
-                                final specialitation = data.data[index - 1];
+                                final specialization = data.data[index - 1];
                                 return Padding(
                                   padding: const EdgeInsets.only(left: 16),
-                                  child: SpecialitationMenu(
-                                    label: specialitation.name,
+                                  child: SpecializationMenu(
+                                    label: specialization.name,
                                     isActive: indexValue == index,
-                                    onPressed: () => onSpecialitationTap(
-                                        index, specialitation.id),
+                                    onPressed: () => onSpecializationTap(
+                                        index, specialization.id),
                                   ),
                                 );
                               }

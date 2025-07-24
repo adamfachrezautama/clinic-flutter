@@ -74,14 +74,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           shape: BoxShape.circle,
                         ),
                         child: Center(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(25),
-                            child: Image.network(
-                              snapshot.data!.data?.user?.image ?? '',
-                              width: 50.0,
-                              height: 50.0,
-                              fit: BoxFit.cover,
-                            ),
+                          child: CircleAvatar(
+                            radius: 30,
+                            backgroundImage: (snapshot.data?.data?.user?.image?.isNotEmpty ?? false)
+                                ? NetworkImage(snapshot.data!.data!.user!.image!)
+                                : const AssetImage('assets/images/user-default.png') as ImageProvider,
+                            backgroundColor: Colors.grey[200],
                           ),
                         ),
                       ),

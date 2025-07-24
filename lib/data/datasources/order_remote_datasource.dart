@@ -134,7 +134,7 @@ class OrderRemoteDatasource {
   Future<Either<String, String>> xenditCallback(
       String externalId, String status) async {
     final response = await http.post(
-      Uri.parse('${dotenv.env["BASE_URL"]}/xendit-callback'),
+      Uri.parse('${dotenv.env["BASE_URL"]}/orders/xendit-callback'),
       headers: {
         // 'Authorization': 'Bearer ${Variables.token}',
         'Accept': 'application/json',

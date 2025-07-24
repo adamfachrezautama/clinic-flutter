@@ -77,7 +77,7 @@ class CardPremiumChat extends StatelessWidget {
                     ),
                     const SpaceHeight(4),
                     Text(
-                      doctor.specialitation?.name ?? "-",
+                      doctor.specialization?.name ?? "-",
                       style: const TextStyle(
                         fontSize: 10.0,
                         fontWeight: FontWeight.w400,

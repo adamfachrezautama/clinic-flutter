@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'get_specialitations_bloc.dart';
+part of 'get_specializations_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,63 +16,63 @@ final _privateConstructorUsedError = UnsupportedError(
 );
 
 /// @nodoc
-mixin _$GetSpecialitationsEvent {
+mixin _$GetSpecializationsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getSpecialitations,
+    required TResult Function() getSpecializations,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getSpecialitations,
+    TResult? Function()? getSpecializations,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getSpecialitations,
+    TResult Function()? getSpecializations,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetSpecialitations value) getSpecialitations,
+    required TResult Function(_GetSpecializations value) getSpecializations,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetSpecialitations value)? getSpecialitations,
+    TResult? Function(_GetSpecializations value)? getSpecializations,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetSpecialitations value)? getSpecialitations,
+    TResult Function(_GetSpecializations value)? getSpecializations,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetSpecialitationsEventCopyWith<$Res> {
-  factory $GetSpecialitationsEventCopyWith(
-    GetSpecialitationsEvent value,
-    $Res Function(GetSpecialitationsEvent) then,
-  ) = _$GetSpecialitationsEventCopyWithImpl<$Res, GetSpecialitationsEvent>;
+abstract class $GetSpecializationsEventCopyWith<$Res> {
+  factory $GetSpecializationsEventCopyWith(
+    GetSpecializationsEvent value,
+    $Res Function(GetSpecializationsEvent) then,
+  ) = _$GetSpecializationsEventCopyWithImpl<$Res, GetSpecializationsEvent>;
 }
 
 /// @nodoc
-class _$GetSpecialitationsEventCopyWithImpl<
+class _$GetSpecializationsEventCopyWithImpl<
   $Res,
-  $Val extends GetSpecialitationsEvent
+  $Val extends GetSpecializationsEvent
 >
-    implements $GetSpecialitationsEventCopyWith<$Res> {
-  _$GetSpecialitationsEventCopyWithImpl(this._value, this._then);
+    implements $GetSpecializationsEventCopyWith<$Res> {
+  _$GetSpecializationsEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GetSpecialitationsEvent
+  /// Create a copy of GetSpecializationsEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -86,14 +86,14 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$GetSpecialitationsEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$GetSpecializationsEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
     _$StartedImpl _value,
     $Res Function(_$StartedImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of GetSpecialitationsEvent
+  /// Create a copy of GetSpecializationsEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -104,7 +104,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'GetSpecialitationsEvent.started()';
+    return 'GetSpecializationsEvent.started()';
   }
 
   @override
@@ -120,7 +120,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getSpecialitations,
+    required TResult Function() getSpecializations,
   }) {
     return started();
   }
@@ -129,7 +129,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getSpecialitations,
+    TResult? Function()? getSpecializations,
   }) {
     return started?.call();
   }
@@ -138,7 +138,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getSpecialitations,
+    TResult Function()? getSpecializations,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -151,7 +151,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetSpecialitations value) getSpecialitations,
+    required TResult Function(_GetSpecializations value) getSpecializations,
   }) {
     return started(this);
   }
@@ -160,7 +160,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetSpecialitations value)? getSpecialitations,
+    TResult? Function(_GetSpecializations value)? getSpecializations,
   }) {
     return started?.call(this);
   }
@@ -169,7 +169,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetSpecialitations value)? getSpecialitations,
+    TResult Function(_GetSpecializations value)? getSpecializations,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -179,46 +179,46 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements GetSpecialitationsEvent {
+abstract class _Started implements GetSpecializationsEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$GetSpecialitationsImplCopyWith<$Res> {
-  factory _$$GetSpecialitationsImplCopyWith(
-    _$GetSpecialitationsImpl value,
-    $Res Function(_$GetSpecialitationsImpl) then,
-  ) = __$$GetSpecialitationsImplCopyWithImpl<$Res>;
+abstract class _$$GetSpecializationsImplCopyWith<$Res> {
+  factory _$$GetSpecializationsImplCopyWith(
+    _$GetSpecializationsImpl value,
+    $Res Function(_$GetSpecializationsImpl) then,
+  ) = __$$GetSpecializationsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GetSpecialitationsImplCopyWithImpl<$Res>
+class __$$GetSpecializationsImplCopyWithImpl<$Res>
     extends
-        _$GetSpecialitationsEventCopyWithImpl<$Res, _$GetSpecialitationsImpl>
-    implements _$$GetSpecialitationsImplCopyWith<$Res> {
-  __$$GetSpecialitationsImplCopyWithImpl(
-    _$GetSpecialitationsImpl _value,
-    $Res Function(_$GetSpecialitationsImpl) _then,
+        _$GetSpecializationsEventCopyWithImpl<$Res, _$GetSpecializationsImpl>
+    implements _$$GetSpecializationsImplCopyWith<$Res> {
+  __$$GetSpecializationsImplCopyWithImpl(
+    _$GetSpecializationsImpl _value,
+    $Res Function(_$GetSpecializationsImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of GetSpecialitationsEvent
+  /// Create a copy of GetSpecializationsEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$GetSpecialitationsImpl implements _GetSpecialitations {
-  const _$GetSpecialitationsImpl();
+class _$GetSpecializationsImpl implements _GetSpecializations {
+  const _$GetSpecializationsImpl();
 
   @override
   String toString() {
-    return 'GetSpecialitationsEvent.getSpecialitations()';
+    return 'GetSpecializationsEvent.getSpecializations()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetSpecialitationsImpl);
+        (other.runtimeType == runtimeType && other is _$GetSpecializationsImpl);
   }
 
   @override
@@ -228,29 +228,29 @@ class _$GetSpecialitationsImpl implements _GetSpecialitations {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getSpecialitations,
+    required TResult Function() getSpecializations,
   }) {
-    return getSpecialitations();
+    return getSpecializations();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getSpecialitations,
+    TResult? Function()? getSpecializations,
   }) {
-    return getSpecialitations?.call();
+    return getSpecializations?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getSpecialitations,
+    TResult Function()? getSpecializations,
     required TResult orElse(),
   }) {
-    if (getSpecialitations != null) {
-      return getSpecialitations();
+    if (getSpecializations != null) {
+      return getSpecializations();
     }
     return orElse();
   }
@@ -259,60 +259,60 @@ class _$GetSpecialitationsImpl implements _GetSpecialitations {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetSpecialitations value) getSpecialitations,
+    required TResult Function(_GetSpecializations value) getSpecializations,
   }) {
-    return getSpecialitations(this);
+    return getSpecializations(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetSpecialitations value)? getSpecialitations,
+    TResult? Function(_GetSpecializations value)? getSpecializations,
   }) {
-    return getSpecialitations?.call(this);
+    return getSpecializations?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetSpecialitations value)? getSpecialitations,
+    TResult Function(_GetSpecializations value)? getSpecializations,
     required TResult orElse(),
   }) {
-    if (getSpecialitations != null) {
-      return getSpecialitations(this);
+    if (getSpecializations != null) {
+      return getSpecializations(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetSpecialitations implements GetSpecialitationsEvent {
-  const factory _GetSpecialitations() = _$GetSpecialitationsImpl;
+abstract class _GetSpecializations implements GetSpecializationsEvent {
+  const factory _GetSpecializations() = _$GetSpecializationsImpl;
 }
 
 /// @nodoc
-mixin _$GetSpecialitationsState {
+mixin _$GetSpecializationsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(SpecialitationResponseModel data) success,
+    required TResult Function(SpecializationResponseModel data) success,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(SpecialitationResponseModel data)? success,
+    TResult? Function(SpecializationResponseModel data)? success,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(SpecialitationResponseModel data)? success,
+    TResult Function(SpecializationResponseModel data)? success,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -340,27 +340,27 @@ mixin _$GetSpecialitationsState {
 }
 
 /// @nodoc
-abstract class $GetSpecialitationsStateCopyWith<$Res> {
-  factory $GetSpecialitationsStateCopyWith(
-    GetSpecialitationsState value,
-    $Res Function(GetSpecialitationsState) then,
-  ) = _$GetSpecialitationsStateCopyWithImpl<$Res, GetSpecialitationsState>;
+abstract class $GetSpecializationsStateCopyWith<$Res> {
+  factory $GetSpecializationsStateCopyWith(
+    GetSpecializationsState value,
+    $Res Function(GetSpecializationsState) then,
+  ) = _$GetSpecializationsStateCopyWithImpl<$Res, GetSpecializationsState>;
 }
 
 /// @nodoc
-class _$GetSpecialitationsStateCopyWithImpl<
+class _$GetSpecializationsStateCopyWithImpl<
   $Res,
-  $Val extends GetSpecialitationsState
+  $Val extends GetSpecializationsState
 >
-    implements $GetSpecialitationsStateCopyWith<$Res> {
-  _$GetSpecialitationsStateCopyWithImpl(this._value, this._then);
+    implements $GetSpecializationsStateCopyWith<$Res> {
+  _$GetSpecializationsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GetSpecialitationsState
+  /// Create a copy of GetSpecializationsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -374,14 +374,14 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$GetSpecialitationsStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$GetSpecializationsStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
     _$InitialImpl _value,
     $Res Function(_$InitialImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of GetSpecialitationsState
+  /// Create a copy of GetSpecializationsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -392,7 +392,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'GetSpecialitationsState.initial()';
+    return 'GetSpecializationsState.initial()';
   }
 
   @override
@@ -410,7 +410,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(SpecialitationResponseModel data) success,
+    required TResult Function(SpecializationResponseModel data) success,
   }) {
     return initial();
   }
@@ -421,7 +421,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(SpecialitationResponseModel data)? success,
+    TResult? Function(SpecializationResponseModel data)? success,
   }) {
     return initial?.call();
   }
@@ -432,7 +432,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(SpecialitationResponseModel data)? success,
+    TResult Function(SpecializationResponseModel data)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -479,7 +479,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements GetSpecialitationsState {
+abstract class _Initial implements GetSpecializationsState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -493,14 +493,14 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$GetSpecialitationsStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$GetSpecializationsStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
     _$LoadingImpl _value,
     $Res Function(_$LoadingImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of GetSpecialitationsState
+  /// Create a copy of GetSpecializationsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -511,7 +511,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'GetSpecialitationsState.loading()';
+    return 'GetSpecializationsState.loading()';
   }
 
   @override
@@ -529,7 +529,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(SpecialitationResponseModel data) success,
+    required TResult Function(SpecializationResponseModel data) success,
   }) {
     return loading();
   }
@@ -540,7 +540,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(SpecialitationResponseModel data)? success,
+    TResult? Function(SpecializationResponseModel data)? success,
   }) {
     return loading?.call();
   }
@@ -551,7 +551,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(SpecialitationResponseModel data)? success,
+    TResult Function(SpecializationResponseModel data)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -598,7 +598,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements GetSpecialitationsState {
+abstract class _Loading implements GetSpecializationsState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -614,14 +614,14 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$GetSpecialitationsStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$GetSpecializationsStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
     _$ErrorImpl _value,
     $Res Function(_$ErrorImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of GetSpecialitationsState
+  /// Create a copy of GetSpecializationsState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -647,7 +647,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'GetSpecialitationsState.error(message: $message)';
+    return 'GetSpecializationsState.error(message: $message)';
   }
 
   @override
@@ -661,7 +661,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of GetSpecialitationsState
+  /// Create a copy of GetSpecializationsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -675,7 +675,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(SpecialitationResponseModel data) success,
+    required TResult Function(SpecializationResponseModel data) success,
   }) {
     return error(message);
   }
@@ -686,7 +686,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(SpecialitationResponseModel data)? success,
+    TResult? Function(SpecializationResponseModel data)? success,
   }) {
     return error?.call(message);
   }
@@ -697,7 +697,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(SpecialitationResponseModel data)? success,
+    TResult Function(SpecializationResponseModel data)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -744,12 +744,12 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements GetSpecialitationsState {
+abstract class _Error implements GetSpecializationsState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
 
-  /// Create a copy of GetSpecialitationsState
+  /// Create a copy of GetSpecializationsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -763,19 +763,19 @@ abstract class _$$SuccessImplCopyWith<$Res> {
     $Res Function(_$SuccessImpl) then,
   ) = __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SpecialitationResponseModel data});
+  $Res call({SpecializationResponseModel data});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$GetSpecialitationsStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$GetSpecializationsStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
     _$SuccessImpl _value,
     $Res Function(_$SuccessImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of GetSpecialitationsState
+  /// Create a copy of GetSpecializationsState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -785,7 +785,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
         null == data
             ? _value.data
             : data // ignore: cast_nullable_to_non_nullable
-                as SpecialitationResponseModel,
+                as SpecializationResponseModel,
       ),
     );
   }
@@ -797,11 +797,11 @@ class _$SuccessImpl implements _Success {
   const _$SuccessImpl(this.data);
 
   @override
-  final SpecialitationResponseModel data;
+  final SpecializationResponseModel data;
 
   @override
   String toString() {
-    return 'GetSpecialitationsState.success(data: $data)';
+    return 'GetSpecializationsState.success(data: $data)';
   }
 
   @override
@@ -815,7 +815,7 @@ class _$SuccessImpl implements _Success {
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  /// Create a copy of GetSpecialitationsState
+  /// Create a copy of GetSpecializationsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -829,7 +829,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(SpecialitationResponseModel data) success,
+    required TResult Function(SpecializationResponseModel data) success,
   }) {
     return success(data);
   }
@@ -840,7 +840,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(SpecialitationResponseModel data)? success,
+    TResult? Function(SpecializationResponseModel data)? success,
   }) {
     return success?.call(data);
   }
@@ -851,7 +851,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(SpecialitationResponseModel data)? success,
+    TResult Function(SpecializationResponseModel data)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -898,13 +898,13 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements GetSpecialitationsState {
-  const factory _Success(final SpecialitationResponseModel data) =
+abstract class _Success implements GetSpecializationsState {
+  const factory _Success(final SpecializationResponseModel data) =
       _$SuccessImpl;
 
-  SpecialitationResponseModel get data;
+  SpecializationResponseModel get data;
 
-  /// Create a copy of GetSpecialitationsState
+  /// Create a copy of GetSpecializationsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>

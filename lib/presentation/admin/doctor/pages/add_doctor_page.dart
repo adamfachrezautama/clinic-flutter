@@ -5,10 +5,8 @@ import 'package:flutter_clinicapp/core/utils/convert.dart';
 import 'package:flutter_clinicapp/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_clinicapp/data/datasources/firebase_datasource.dart';
 import 'package:flutter_clinicapp/data/models/request/doctor_request_model.dart';
-import 'package:flutter_clinicapp/data/models/response/specialitation_response_model.dart';
 import 'package:flutter_clinicapp/data/models/response/user_model.dart';
 import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/add_doctor/add_doctor_bloc.dart';
-import 'package:flutter_clinicapp/presentation/admin/doctor/blocs/get_specialitations/get_specialitations_bloc.dart';
 import 'package:flutter_clinicapp/presentation/chat/blocs/get_doctors/get_doctors_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +20,8 @@ import 'package:flutter_clinicapp/core/extensions/build_context_ext.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/components/image_picker_widget.dart';
+import '../../../../data/models/response/specialization_response_model.dart';
+import '../blocs/get_specialization/get_specializations_bloc.dart';
 
 class AddDoctorPage extends StatefulWidget {
   const AddDoctorPage({super.key});
@@ -40,7 +40,7 @@ class _AddDoctorPageState extends State<AddDoctorPage> {
   TimeOfDay? _startTime;
   TimeOfDay? _endTime;
   XFile? imageFile;
-  SpecialitationModel? _selectedSpecialitation;
+  SpecializationModel? _selectedSpecialization;
   @override
   void initState() {
     _nameController = TextEditingController();
@@ -49,8 +49,8 @@ class _AddDoctorPageState extends State<AddDoctorPage> {
     _telemedicRateController = TextEditingController();
     _chatPremiumRateController = TextEditingController();
     context
-        .read<GetSpecialitationsBloc>()
-        .add(const GetSpecialitationsEvent.getSpecialitations());
+        .read<GetSpecializationsBloc>()
+        .add(const GetSpecializationsEvent.getSpecializations());
     super.initState();
   }
 
@@ -107,6 +107,7 @@ class _AddDoctorPageState extends State<AddDoctorPage> {
                   id: '-',
                   userName: _nameController!.text,
                   email: _emailController!.text,
+                  role: 'doctor',
                 );
                 await FirebaseDatasource.instance.setUserToDB(model);
                 context
@@ -141,7 +142,7 @@ class _AddDoctorPageState extends State<AddDoctorPage> {
                       status: 'active',
                       gender: _selectedGender!,
                       certification: _sertificationController!.text,
-                      specialitationId: _selectedSpecialitation!.id,
+                      specializationId: _selectedSpecialization!.id,
                       telemedicineFee: telemedicRate,
                       chatFee: chatPremiumRate,
                       startTime: startTime,
@@ -377,7 +378,7 @@ class _AddDoctorPageState extends State<AddDoctorPage> {
                   const SpaceHeight(
                     8,
                   ),
-                  BlocBuilder<GetSpecialitationsBloc, GetSpecialitationsState>(
+                  BlocBuilder<GetSpecializationsBloc, GetSpecializationsState>(
                     builder: (context, state) {
                       return state.maybeWhen(
                         orElse: () {
@@ -386,9 +387,9 @@ class _AddDoctorPageState extends State<AddDoctorPage> {
                           );
                         },
                         success: (data) {
-                          _selectedSpecialitation = data.data.firstWhere(
+                          _selectedSpecialization = data.data.firstWhere(
                               (element) =>
-                                  element.id == _selectedSpecialitation?.id,
+                                  element.id == _selectedSpecialization?.id,
                               orElse: () => data.data.first);
                           return DropdownButtonHideUnderline(
                             child: Container(
@@ -398,8 +399,8 @@ class _AddDoctorPageState extends State<AddDoctorPage> {
                               ),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 5),
-                              child: DropdownButton<SpecialitationModel>(
-                                value: _selectedSpecialitation,
+                              child: DropdownButton<SpecializationModel>(
+                                value: _selectedSpecialization,
                                 hint: const Text(
                                   "Pilih Spesialisasi",
                                   style: TextStyle(
@@ -413,18 +414,18 @@ class _AddDoctorPageState extends State<AddDoctorPage> {
                                 isExpanded: true,
                                 onChanged: (newValue) {
                                   if (newValue != null) {
-                                    _selectedSpecialitation = newValue;
-                                    log('Selected Spesialisasi: ${_selectedSpecialitation!.toMap()}');
+                                    _selectedSpecialization = newValue;
+                                    log('Selected Spesialisasi: ${_selectedSpecialization!.toMap()}');
                                     setState(() {});
                                   }
                                 },
                                 items: data.data
-                                    .map<DropdownMenuItem<SpecialitationModel>>(
-                                        (SpecialitationModel specialitation) {
-                                  return DropdownMenuItem<SpecialitationModel>(
-                                    value: specialitation,
+                                    .map<DropdownMenuItem<SpecializationModel>>(
+                                        (SpecializationModel specialization) {
+                                  return DropdownMenuItem<SpecializationModel>(
+                                    value: specialization,
                                     child: Text(
-                                      specialitation.name,
+                                      specialization.name,
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,

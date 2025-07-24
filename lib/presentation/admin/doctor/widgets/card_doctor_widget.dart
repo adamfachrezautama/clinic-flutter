@@ -76,7 +76,7 @@ class CardDoctorWidget extends StatelessWidget {
                     ),
                     const SpaceHeight(4),
                     Text(
-                      doctor.specialitation?.name ?? '-',
+                      doctor.specialization?.name ?? '-',
                       style: const TextStyle(
                         fontSize: 12.0,
                         fontWeight: FontWeight.w400,
