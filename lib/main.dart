@@ -17,7 +17,9 @@ import 'package:flutter_clinicapp/presentation/auth/blocs/login_google/login_goo
 import 'package:flutter_clinicapp/presentation/auth/blocs/logout/logout_bloc.dart';
 import 'package:flutter_clinicapp/presentation/auth/blocs/update_google_id/update_google_id_bloc.dart';
 import 'package:flutter_clinicapp/presentation/auth/blocs/update_user/update_user_bloc.dart';
+import 'package:flutter_clinicapp/presentation/auth/pages/data_pengguna_page.dart';
 import 'package:flutter_clinicapp/presentation/auth/pages/onboarding_page.dart';
+import 'package:flutter_clinicapp/presentation/auth/pages/privacy_policy_page.dart';
 import 'package:flutter_clinicapp/presentation/chat/blocs/bloc/chat_expired_bloc.dart';
 import 'package:flutter_clinicapp/presentation/chat/blocs/create_order/create_order_bloc.dart';
 import 'package:flutter_clinicapp/presentation/chat/blocs/get_doctors/get_doctors_bloc.dart';
@@ -180,21 +182,21 @@ class MyApp extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Scaffold(body: Center(child: CircularProgressIndicator()));
               }
+              if (snapshot.data!.data!.user!.agreedPrivacyPolicy == true && snapshot.hasData && snapshot.data?.data?.user != null) {
+                  final role = snapshot.data!.data!.user!.role;
 
-              if (snapshot.hasData && snapshot.data?.data?.user != null) {
-                final role = snapshot.data!.data!.user!.role;
-
-                if (role == 'doctor') {
-                  return const DoctorHomePage();
-                } else if (role == 'admin') {
-                  return const AdminMainPage();
-                } else {
-                  return const HomePage();
-                }
+                  if (role == 'doctor') {
+                    return const DoctorHomePage();
+                  } else if (role == 'admin') {
+                    return const AdminMainPage();
+                  } else {
+                    return const OnboardingPage();
+                  }
+              } else {
+                return const PrivacyPolicyPage();
               }
-
               // Jika belum login / tidak ada data
-              return const OnboardingPage();
+              return const PrivacyPolicyPage();
             },
           )
       ),
