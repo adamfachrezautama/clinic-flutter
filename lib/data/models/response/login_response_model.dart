@@ -17,6 +17,16 @@ class LoginResponseModel {
     this.data,
   });
 
+  LoginResponseModel copyWith({
+    bool? status,
+    LoginModel? data,
+  }) {
+    return LoginResponseModel(
+      status: status ?? this.status,
+      data: data ?? this.data,
+    );
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'status': status,
@@ -32,7 +42,6 @@ class LoginResponseModel {
   }
 
   String toJson() => json.encode(toMap());
-
   factory LoginResponseModel.fromJson(String source) =>
       LoginResponseModel.fromMap(json.decode(source));
 }
@@ -56,6 +65,18 @@ class LoginModel {
     this.isNew,
   });
 
+  LoginModel copyWith({
+    String? token,
+    UserModel? user,
+    bool? isNew,
+  }) {
+    return LoginModel(
+      token: token ?? this.token,
+      user: user ?? this.user,
+      isNew: isNew ?? this.isNew,
+    );
+  }
+
   factory LoginModel.fromMap(Map<String, dynamic> json) => LoginModel(
     token: json["token"],
     isNew: json["is_new"],
@@ -73,7 +94,6 @@ class UserModel {
   final int? id;
   final String? name;
   final String? email;
-
   final String? role;
   final String? googleId;
   final String? ktpNumber;
@@ -90,6 +110,8 @@ class UserModel {
   final int? clinicId;
   final String? image;
   final String? status;
+  final bool agreedPrivacyPolicy;
+  final DateTime? privacyPolicyAgreedAt;
 
   UserModel({
     this.id,
@@ -111,6 +133,8 @@ class UserModel {
     this.clinicId,
     this.image,
     this.status,
+    required this.agreedPrivacyPolicy,
+    this.privacyPolicyAgreedAt,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
@@ -135,9 +159,13 @@ class UserModel {
     clinicId: json["clinic_id"],
     image: json["image"],
     status: json["status"],
+    agreedPrivacyPolicy:json["agreed_privacy_policy"],
+    privacyPolicyAgreedAt: (json["privacy_policy_agreed_at"] != null &&
+        json["privacy_policy_agreed_at"] is String &&
+        json["privacy_policy_agreed_at"].toString().isNotEmpty)
+        ? DateTime.tryParse(json["privacy_policy_agreed_at"])
+        : null,
   );
-
-
 
   Map<String, dynamic> toMap() => {
     "id": id,
@@ -161,5 +189,7 @@ class UserModel {
     "clinic_id": clinicId,
     "image": image,
     "status": status,
+    "agreed_privacy_policy": agreedPrivacyPolicy,
+    "privacy_policy_agreed_at": privacyPolicyAgreedAt?.toIso8601String(),
   };
 }

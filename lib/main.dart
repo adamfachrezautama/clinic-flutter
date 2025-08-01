@@ -176,29 +176,24 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-          home: FutureBuilder<LoginResponseModel?>(
+        home: FutureBuilder<LoginResponseModel?>(
             future: AuthLocalDatasource().getUserData(),
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Scaffold(body: Center(child: CircularProgressIndicator()));
-              }
-              if (snapshot.data!.data!.user!.agreedPrivacyPolicy == true && snapshot.hasData && snapshot.data?.data?.user != null) {
-                  final role = snapshot.data!.data!.user!.role;
-
-                  if (role == 'doctor') {
+              if (snapshot.hasData) {
+                if (snapshot.data != null) {
+                  //check role
+                  if (snapshot.data!.data!.user!.role == 'doctor') {
                     return const DoctorHomePage();
-                  } else if (role == 'admin') {
+                  } else if (snapshot.data!.data!.user!.role == 'admin') {
                     return const AdminMainPage();
-                  } else {
-                    return const OnboardingPage();
                   }
-              } else {
-                return const PrivacyPolicyPage();
+                  return const HomePage();
+                } else {
+                  return const OnboardingPage();
+                }
               }
-              // Jika belum login / tidak ada data
-              return const PrivacyPolicyPage();
-            },
-          )
+              return const OnboardingPage();
+            }),
       ),
     );
   }

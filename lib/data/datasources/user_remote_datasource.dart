@@ -116,5 +116,28 @@ class UserRemoteDatasource {
     }
   }
 
+  Future<Either<String, UserModel>> updateAgreePrivacyPolicy(
+      String id,
+      ) async {
+    final response = await http.put(
+      Uri.parse("${dotenv.env["BASE_URL"]}/user/agree-privacy-policy/$id"),
+      headers: {
+        'Authorization': 'Bearer ${dotenv.env["TOKEN"]}',
+        'Accept': 'application/json',
+      },
+      body: jsonEncode({
+        "agreed_privacy_policy": true,
+        "privacy_policy_agreed_at":DateTime.now().toIso8601String(),
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body)['data'];
+      return Right(UserModel.fromMap(data));
+    } else {
+      final message = jsonDecode(response.body)['message'];
+      return Left(message);
+    }
+  }
   
 }
